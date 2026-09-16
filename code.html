@@ -1,0 +1,1152 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; } .brand-logo { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; filter: drop-shadow(0 0 5px rgba(0, 240, 208, 0.22)); } .brand-logo-link { display: block; flex: 0 1 auto; } .brand-logo-header { width: 260px; height: 96px; margin-left: 0; } .brand-logo-footer { width: min(100%, 297px); height: 109px; } @media (min-width: 1024px) { header + main { padding-top: 5.5rem !important; } } @media (min-width: 1280px) { header > div { width: 100%; max-width: none !important; padding-left: 24px !important; padding-right: 24px !important; display: grid !important; grid-template-columns: auto minmax(0, 1fr) auto; } header > div > div:first-child { justify-self: start; } header > div > nav { justify-self: center; } header > div > div:last-child { justify-self: end; } header > div > div:last-child > a[data-path="login"] { order: 1; } header > div > div:last-child > a[data-path="sign-up"] { order: 2; } } @media (max-width: 640px) { .brand-logo-header { width: 200px; height: 74px; } .brand-logo-footer { width: min(100%, 267px); height: 99px; } }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary-container": "#00f0d0", "surface-container-high": "#262a33", "tertiary-fixed": "#71f8e4", "background": "#10131c", "secondary-container": "#41495a", "error": "#ffb4ab", "surface-container-highest": "#31353e", "on-secondary": "#293041", "on-surface-variant": "#b9cac4", "surface-container": "#1c1f28", "tertiary-fixed-dim": "#4fdbc8", "on-background": "#e0e2ee", "error-container": "#93000a", "on-primary": "#00382f", "secondary-fixed-dim": "#bfc6db", "surface-container-low": "#181b24", "on-error": "#690005", "on-primary-fixed": "#00201a", "on-tertiary-fixed": "#00201c", "inverse-surface": "#e0e2ee", "on-secondary-fixed": "#141c2b", "on-secondary-container": "#b1b8cd", "surface": "#10131c", "primary-fixed": "#30fddd", "surface-tint": "#00dfc1", "surface-container-lowest": "#0b0e16", "on-error-container": "#ffdad6", "inverse-primary": "#006b5c", "on-tertiary-container": "#00685d", "on-tertiary-fixed-variant": "#005048", "on-primary-container": "#00695a", "outline": "#84948f", "on-primary-fixed-variant": "#005145", "primary-fixed-dim": "#00dfc1", "inverse-on-surface": "#2d3039", "surface-variant": "#31353e", "secondary-fixed": "#dbe2f8", "outline-variant": "#3a4a46", "primary": "#beffee", "on-tertiary": "#003731", "tertiary-container": "#62ebd7", "tertiary": "#bdfff2", "secondary": "#bfc6db", "surface-dim": "#10131c", "on-secondary-fixed-variant": "#3f4758", "on-surface": "#e0e2ee", "surface-bright": "#363942" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-3xl": "4.5rem", "space-xxs": "0.25rem", "space-xl": "2rem", "gutter-mobile": "1rem", "space-lg": "1.5rem", "space-sm": "0.75rem", "space-xs": "0.5rem", "gutter-desktop": "1.5rem", "space-2xl": "3rem", "space-4xl": "6rem", "container-max": "1240px" }, "fontFamily": { "headline-lg": [ "Space Grotesk" ], "body-md": [ "Plus Jakarta Sans" ], "headline-sm": [ "Space Grotesk" ], "label-sm": [ "Space Grotesk" ], "display-hero": [ "Space Grotesk" ], "headline-md": [ "Space Grotesk" ], "body-lg": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Space Grotesk" ], "body-sm": [ "Plus Jakarta Sans" ], "display-hero-mobile": [ "Space Grotesk" ], "label-lg": [ "Space Grotesk" ] }, "fontSize": { "headline-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-md": [ "15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" } ], "display-hero": [ "56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" } ], "headline-md": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-lg": [ "18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-lg-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-sm": [ "13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "display-hero-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.45)]"><div class="h-[68px] md:h-[72px] lg:h-[84px] max-w-[1240px] mx-auto px-gutter-desktop flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><a class="brand-logo-link group focus:outline-none transition-transform hover:scale-[1.02]" href="#" aria-label="INKNOVIO TECH home"><img alt="INKNOVIO TECH" class="brand-logo brand-logo-header" src="assets/inknovio-logo.png"></a></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-label-lg text-label-lg font-bold"><a aria-current="page" class="transition-colors text-primary font-label-lg text-label-lg font-bold" data-path="home" href="#home">Home</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="services" href="#services">Services</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="how-it-works" href="#how-it-works">How It Works</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="work" href="#work">Work</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="about" href="#about">About</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="facts" href="#facts">Facts</a></nav><div class="flex items-center gap-space-sm"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface px-space-xs py-space-xxs transition-colors" data-path="login" href="#">Login</a><a class="hidden sm:inline-flex items-center justify-center font-label-lg text-label-lg text-on-surface bg-surface-container/60 hover:bg-surface-container hover:text-primary px-space-md py-space-xs rounded-full transition-all shadow-[0_4px_16px_rgba(0,0,0,0.3)]" data-path="sign-up" href="#">Sign Up</a></div></div></header><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<!-- 1. HERO SECTION -->
+<section class="relative overflow-hidden pt-space-xl pb-space-3xl lg:pt-space-2xl lg:pb-space-4xl" id="home">
+<!-- Ambient Radial Light -->
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-br from-primary-container/15 via-transparent to-transparent blur-3xl pointer-events-none rounded-full"></div>
+<div class="absolute -top-10 right-10 w-96 h-96 bg-primary-container/10 blur-[100px] pointer-events-none rounded-full"></div>
+<div class="max-w-[1240px] mx-auto px-gutter-desktop relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<!-- Left Text Column (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col items-start gap-space-md">
+<!-- Badge Pill -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xxs rounded-full bg-surface-container-high/90 shadow-[0_0_16px_rgba(0,240,208,0.15)]">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-ping"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">AI UGC Creative Production For DTC &amp; E-Commerce</span>
+</div>
+<!-- Massive Headline -->
+<h1 class="font-display-hero text-display-hero-mobile lg:text-display-hero text-on-surface tracking-tight">
+            AI UGC Ads That Make People <span class="bg-gradient-to-r from-primary-container via-tertiary to-primary bg-clip-text text-transparent">Stop Scrolling.</span>
+</h1>
+<!-- Subtitle -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            We create high-converting AI UGC ad creatives designed to capture attention, communicate your product clearly, and help brands scale their paid advertising campaigns.
+          </p>
+<!-- Dual CTAs -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center justify-center font-label-lg text-label-lg text-on-primary-container bg-primary-container hover:bg-primary-fixed hover:text-on-primary-fixed px-space-xl py-space-md rounded-full shadow-[0_0_24px_rgba(0,240,208,0.4)] hover:shadow-[0_0_36px_rgba(0,240,208,0.65)] hover:-translate-y-0.5 transition-all" href="#get-started">
+              Get Your Ads Created →
+            </a>
+<a class="inline-flex items-center justify-center font-label-lg text-label-lg text-on-surface bg-surface-container-high/80 hover:bg-surface-container-highest px-space-xl py-space-md rounded-full backdrop-blur-md shadow-md hover:-translate-y-0.5 transition-all" href="#work">
+              View Our Work
+            </a>
+</div>
+<!-- Micro Trust Statement -->
+<div class="flex items-center gap-space-xs pt-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container text-base">verified</span>
+<span class="font-body-sm text-body-sm">Built for brands that want better creatives, faster.</span>
+</div>
+</div>
+<!-- Right interactive hero video placeholder (5 Cols) -->
+<div class="lg:col-span-5 flex justify-center lg:justify-end">
+<div class="relative w-full max-w-[340px] rounded-3xl p-space-xxs bg-surface-container-low shadow-[0_24px_64px_rgba(0,0,0,0.8),0_0_32px_rgba(0,240,208,0.18)] group">
+<!-- Video frame container -->
+<div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-surface-container-lowest flex flex-col justify-between p-space-md shadow-inner" data-video-container="hero-ad" data-video-src="/assets/videos/perfume/8..mp4">
+<!-- Sponsored ad video layer -->
+<video class="absolute inset-0 h-full w-full object-cover opacity-65 scale-100 group-hover:scale-105 transition-transform duration-700 ease-out" muted loop playsinline preload="auto">
+<source src="/assets/videos/perfume/8..mp4" type="video/mp4">
+</video>
+<!-- Gradient Scrim for Readability -->
+<div class="absolute inset-0 bg-gradient-to-b from-surface/80 via-transparent to-surface/95"></div>
+<!-- Top Bar Info: Creator & Tag -->
+<div class="relative z-10 flex items-center justify-between w-full">
+<div class="flex items-center gap-space-xs bg-surface/80 backdrop-blur-md px-space-sm py-space-xxs rounded-full">
+<div class="w-6 h-6 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-primary-container">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface leading-tight">Aurelle Fragrance</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant leading-none">Sponsored Paid Ad</span>
+</div>
+</div>
+<span class="px-space-xs py-space-xxs rounded-md bg-surface-container-high/90 text-primary font-label-sm text-[10px] tracking-wider uppercase">Meta</span>
+</div>
+<!-- Center Play Badge & Soundwaves -->
+<div class="relative z-10 flex flex-col items-center justify-center my-auto gap-space-sm">
+<button aria-label="Preview video" class="hero-video-trigger w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_30px_rgba(0,240,208,0.6)] group-hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+<!-- Bottom Layer: Hook Pill & Engagement Metrics -->
+<div class="relative z-10 flex flex-col gap-space-xs">
+<!-- Interactive Hook Pill -->
+<div class="bg-surface-container-high/90 backdrop-blur-md p-space-sm rounded-xl shadow-lg">
+<span class="font-label-sm text-[10px] text-primary uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">bolt</span> 3-Sec Retention Hook
+                  </span>
+<p class="font-headline-sm text-sm text-on-surface mt-0.5 font-semibold">
+                    “This fragrance made every entrance feel unforgettable.”
+                  </p>
+</div>
+<!-- Engagement Bar -->
+<div class="flex items-center justify-between px-space-xs text-on-surface-variant font-label-sm text-xs">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-error" style="font-variation-settings: &quot;FILL&quot; 1;">favorite</span> 38.4k</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 1,248</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">share</span> 5.1k</span>
+<span class="text-primary-container font-semibold">98.4% Retention</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. TRUST / SOCIAL PROOF BAR -->
+<section class="w-full bg-surface-container-lowest py-space-lg shadow-sm">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop flex flex-col lg:flex-row items-center justify-between gap-space-md">
+<div class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase text-center lg:text-left flex flex-wrap items-center justify-center gap-space-xs">
+<span class="">Modern advertising teams</span>
+<span class="text-primary-container">•</span>
+<span class="">E-commerce brands</span>
+<span class="text-primary-container">•</span>
+<span class="">DTC brands</span>
+<span class="text-primary-container">•</span>
+<span class="">Startups</span>
+<span class="text-primary-container">•</span>
+<span class="">Growth Agencies</span>
+</div>
+<!-- Platform Ecosystem Badges -->
+<div class="flex flex-wrap items-center justify-center gap-space-lg text-on-surface-variant opacity-80">
+<div class="flex items-center gap-1 font-label-lg text-xs hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-base">campaign</span> Meta Ads
+        </div>
+<div class="flex items-center gap-1 font-label-lg text-xs hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-base">music_note</span> TikTok Ads
+        </div>
+<div class="flex items-center gap-1 font-label-lg text-xs hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-base">ads_click</span> Google Platform
+        </div>
+<div class="flex items-center gap-1 font-label-lg text-xs hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-base">shopping_bag</span> Shopify Plus
+        </div>
+<div class="flex items-center gap-1 font-label-lg text-xs hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-base">inventory_2</span> Amazon Advertising
+        </div>
+</div>
+</div>
+</section>
+<!-- 3. THE PERFORMANCE PROBLEM SECTION (#problem) -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface relative" id="problem">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="flex flex-col items-start max-w-2xl gap-space-xs mb-space-2xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">THE CREATIVE BOTTLENECK</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+          Your Ads Don’t Need More Budget. <span class="text-primary-container">They Need Better Creative.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Traditional UGC production can be expensive, slow, difficult to scale, and inconsistent. INKNOVIO TECH helps brands create fresh UGC-style advertising creatives through AI-powered creative workflows.
+        </p>
+</div>
+<!-- 4-Card Problem Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Card 1 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col gap-space-sm group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary-container group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">payments</span>
+</div>
+<span class="font-label-sm text-xs text-error font-semibold uppercase tracking-wider">High Cost</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Expensive Production</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Traditional creator production can quickly become costly ($500–$1,500 per creator video with zero guarantee of return).
+          </p>
+</div>
+<!-- Card 2 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col gap-space-sm group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary-container group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">hourglass_empty</span>
+</div>
+<span class="font-label-sm text-xs text-error font-semibold uppercase tracking-wider">Latency</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Slow Turnaround</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Waiting 3–4 weeks for shipping, filming, and creator retakes slows down testing cycles and burns campaign momentum.
+          </p>
+</div>
+<!-- Card 3 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col gap-space-sm group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary-container group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">battery_alert</span>
+</div>
+<span class="font-label-sm text-xs text-error font-semibold uppercase tracking-wider">Burnout</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Creative Fatigue</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Winning ads lose attention and burn out within 10–14 days when audiences repeatedly see the exact same hook.
+          </p>
+</div>
+<!-- Card 4 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col gap-space-sm group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary-container group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">schema</span>
+</div>
+<span class="font-label-sm text-xs text-error font-semibold uppercase tracking-wider">Bottleneck</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Hard to Scale</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Producing multiple creative variations and 20+ weekly hook variants is nearly impossible with traditional logistics.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. SERVICES SECTION (#services) -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface-container-lowest relative" id="services">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="flex flex-col items-center text-center max-w-3xl mx-auto gap-space-xs mb-space-3xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">HIGH-TECH PRODUCTION</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+          Everything You Need to Create <span class="text-primary-container">Better UGC Ads.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Engineered specifically for media buyers, growth marketers, and direct-to-consumer store owners.
+        </p>
+</div>
+<!-- 6 Service Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl">
+<!-- Service 1 -->
+<div class="p-space-xl rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center text-primary-container shadow-sm group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">video_camera_front</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">AI UGC Video Ads</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Realistic AI-powered UGC-style videos engineered specifically for TikTok, Instagram Reels, and YouTube Shorts paid campaigns.
+            </p>
+</div>
+<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary-container mt-space-lg group-hover:translate-x-1 transition-transform" href="#get-started">
+            Explore Capability <span class="">→</span>
+</a>
+</div>
+<!-- Service 2 -->
+<div class="p-space-xl rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center text-primary-container shadow-sm group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">face</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">AI Creators &amp; Avatars</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Consistent virtual creators designed around your precise customer demographics, accents, age profiles, and brand tone.
+            </p>
+</div>
+<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary-container mt-space-lg group-hover:translate-x-1 transition-transform" href="#get-started">
+            Explore Capability <span class="">→</span>
+</a>
+</div>
+<!-- Service 3 -->
+<div class="p-space-xl rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center text-primary-container shadow-sm group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">call_split</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Ad Creative Variations</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Multiple visual hooks, emotional angles, and spoken scripts tested at speed to systematically defeat creative decay.
+            </p>
+</div>
+<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary-container mt-space-lg group-hover:translate-x-1 transition-transform" href="#get-started">
+            Explore Capability <span class="">→</span>
+</a>
+</div>
+<!-- Service 4 -->
+<div class="p-space-xl rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center text-primary-container shadow-sm group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">view_in_ar</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Product-Focused Ads</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Product-centered UGC storytelling designed to communicate direct value, unboxing excitement, and functional problem-solving.
+            </p>
+</div>
+<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary-container mt-space-lg group-hover:translate-x-1 transition-transform" href="#get-started">
+            Explore Capability <span class="">→</span>
+</a>
+</div>
+<!-- Service 5 -->
+<div class="p-space-xl rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center text-primary-container shadow-sm group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Ad Scripts &amp; Hooks</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Attention-focused hooks and direct-response scripts engineered around consumer buying psychology and pattern interrupts.
+            </p>
+</div>
+<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary-container mt-space-lg group-hover:translate-x-1 transition-transform" href="#get-started">
+            Explore Capability <span class="">→</span>
+</a>
+</div>
+<!-- Service 6 -->
+<div class="p-space-xl rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center text-primary-container shadow-sm group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">auto_graph</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Creative Testing Assets</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Multivariate batch assets ready for immediate injection into Meta Advantage+ and TikTok Smart Creative scaling pools.
+            </p>
+</div>
+<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary-container mt-space-lg group-hover:translate-x-1 transition-transform" href="#get-started">
+            Explore Capability <span class="">→</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. UGC PORTFOLIO / WORK SECTION (#work) -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface-container-lowest relative" id="work">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg mb-space-2xl">
+<div class="flex flex-col items-start gap-space-xs max-w-xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">BATTLE-TESTED CREATIVES</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+            Creative That Looks Native. <span class="text-primary-container">Built to Perform.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            Browse our AI-synthesized native video creatives. Click to simulate interactive playback in native ad containers.
+          </p>
+</div>
+<!-- Production Note Pill -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-xs">
+<span class="material-symbols-outlined text-primary-container text-sm">tune</span>
+<span class="">1-Click MP4 Container Ready</span>
+</div>
+</div>
+<!-- Category Filter Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-md mb-space-xl" id="portfolio-filters">
+<button class="filter-btn active px-space-md py-space-xs rounded-full font-label-sm text-xs bg-primary-container text-on-primary-container transition-all">All</button>
+<button class="filter-btn px-space-md py-space-xs rounded-full font-label-sm text-xs bg-surface-container text-on-surface-variant hover:text-on-surface transition-all">Beauty &amp; Personal Care</button>
+<button class="filter-btn px-space-md py-space-xs rounded-full font-label-sm text-xs bg-surface-container text-on-surface-variant hover:text-on-surface transition-all">Fashion &amp; Apparel</button>
+<button class="filter-btn px-space-md py-space-xs rounded-full font-label-sm text-xs bg-surface-container text-on-surface-variant hover:text-on-surface transition-all">Fitness</button>
+<button class="filter-btn px-space-md py-space-xs rounded-full font-label-sm text-xs bg-surface-container text-on-surface-variant hover:text-on-surface transition-all">Gadgets</button>
+</div>
+<div id="niche-subcategories" class="min-h-0 mb-space-md" aria-label="Niche subcategories"></div>
+<!-- Single-row portfolio carousel -->
+<div class="portfolio-slider" data-slider="all" aria-label="Portfolio video carousel">
+<div class="flex items-center justify-end gap-space-sm mb-space-sm">
+<button type="button" class="portfolio-slider-control" data-slide="prev" aria-label="Previous portfolio videos"><span class="material-symbols-outlined">chevron_left</span></button>
+<button type="button" class="portfolio-slider-control" data-slide="next" aria-label="Next portfolio videos"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<div class="portfolio-slider-track">
+<!-- Beauty & Personal Care Video 1 -->
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-beauty-1" data-video-src="/assets/videos/beauty-personal-care/2..mp4" data-niche="Beauty & Personal Care" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/beauty-personal-care/2..mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play beauty video 1">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Beauty & Personal Care Video 2 -->
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-beauty-2" data-video-src="/assets/videos/beauty-personal-care/3..mp4" data-niche="Beauty & Personal Care" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/beauty-personal-care/3..mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play beauty video 2">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Beauty & Personal Care Video 3 -->
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-beauty-3" data-video-src="/assets/videos/beauty-personal-care/7..mp4" data-niche="Beauty & Personal Care" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/beauty-personal-care/7..mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play beauty video 3">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Gadgets Video 1 -->
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-gadgets-1" data-video-src="/assets/videos/gadgets/1.%20(1).mp4" data-niche="Gadgets" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata"><source src="/assets/videos/gadgets/1.%20(1).mp4" type="video/mp4"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto"><button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play gadgets video 1"><span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span></button></div>
+</div>
+</div>
+<!-- Gadgets Video 2 -->
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-gadgets-2" data-video-src="/assets/videos/gadgets/2.%20(2).mp4" data-niche="Gadgets" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata"><source src="/assets/videos/gadgets/2.%20(2).mp4" type="video/mp4"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto"><button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play gadgets video 2"><span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span></button></div>
+</div>
+</div>
+<!-- Gadgets Video 3 -->
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-gadgets-3" data-video-src="/assets/videos/gadgets/3.%20(1).mp4" data-niche="Gadgets" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata"><source src="/assets/videos/gadgets/3.%20(1).mp4" type="video/mp4"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto"><button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play gadgets video 3"><span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span></button></div>
+</div>
+</div>
+</div>
+<div id="video-lightbox" class="video-lightbox fixed inset-0 z-50 hidden items-center justify-center bg-surface/90 p-4 backdrop-blur-md" aria-hidden="true">
+<div class="video-lightbox-panel relative w-full max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-surface-container shadow-[0_30px_80px_rgba(0,0,0,0.8)]">
+<button id="close-video-modal" type="button" class="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-high text-on-surface shadow-lg" aria-label="Close video preview">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<video id="video-modal-player" class="block max-h-[78vh] w-full bg-black" controls controlslist="nodownload" disablepictureinpicture playsinline preload="metadata"><source id="video-modal-source" type="video/mp4"></video>
+</div>
+</div>
+</section>
+<section class="pt-space-lg pb-space-md bg-surface-container-lowest relative" id="fashion-apparel">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="mb-space-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Fashion &amp; Apparel</span>
+</div>
+<div class="portfolio-slider" data-slider="fashion" aria-label="Fashion &amp; Apparel video carousel">
+<div class="flex items-center justify-end gap-space-sm mb-space-sm">
+<button type="button" class="portfolio-slider-control" data-slide="prev" aria-label="Previous videos"><span class="material-symbols-outlined">chevron_left</span></button>
+<button type="button" class="portfolio-slider-control" data-slide="next" aria-label="Next videos"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<div class="portfolio-slider-track">
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-fashion-1" data-video-src="/assets/videos/fashion-apparel/1..mp4" data-niche="Fashion & Apparel" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/fashion-apparel/1..mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play fashion app video 1">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-fashion-2" data-video-src="/assets/videos/fashion-apparel/2.mp4" data-niche="Fashion & Apparel" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/fashion-apparel/2.mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play fashion app video 2">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-fashion-3" data-video-src="/assets/videos/fashion-apparel/3.%20(3).mp4" data-niche="Fashion & Apparel" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/fashion-apparel/3.%20(3).mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play fashion app video 3">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="pt-space-lg pb-space-md bg-surface-container-lowest relative" id="fitness">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="mb-space-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Fitness</span>
+</div>
+<div class="portfolio-slider" data-slider="fitness" aria-label="Fitness video carousel">
+<div class="flex items-center justify-end gap-space-sm mb-space-sm">
+<button type="button" class="portfolio-slider-control" data-slide="prev" aria-label="Previous fitness videos"><span class="material-symbols-outlined">chevron_left</span></button>
+<button type="button" class="portfolio-slider-control" data-slide="next" aria-label="Next fitness videos"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<div class="portfolio-slider-track">
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-fitness-1" data-video-src="/assets/videos/fitness/2.%20(1).mp4" data-niche="Fitness" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/fitness/2.%20(1).mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play fitness video 1">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-fitness-2" data-video-src="/assets/videos/fitness/3.%20(2).mp4" data-niche="Fitness" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/fitness/3.%20(2).mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play fitness video 2">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<div class="portfolio-card-shell video-card group flex flex-col rounded-2xl overflow-hidden bg-surface-container shadow-lg hover:-translate-y-1 transition-all duration-300" data-video-container="portfolio-fitness-3" data-video-src="/assets/videos/fitness/4..mp4" data-niche="Fitness" data-subcategory="">
+<div class="relative w-full aspect-[9/16] bg-surface-container-high overflow-hidden flex flex-col justify-between p-space-md">
+<video class="absolute inset-0 h-full w-full object-cover" muted playsinline preload="metadata">
+<source src="/assets/videos/fitness/4..mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/70"></div>
+<div class="relative z-10 flex flex-col items-center justify-center my-auto">
+<button type="button" class="video-trigger w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_24px_rgba(0,240,208,0.5)] group-hover:scale-110 transition-transform cursor-pointer" aria-label="Play fitness video 3">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. WHY INKNOVIO TECH (#about) -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface relative" id="about">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<div class="lg:col-span-5 flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">THE INKNOVIO ADVANTAGE</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+            Why Brands Choose <span class="text-primary-container">INKNOVIO TECH</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            We bridge direct response marketing intelligence with computational video synthesis, giving your ad accounts the volume and quality necessary to dominate modern algorithmic auctions.
+          </p>
+<div id="facts" class="p-space-lg rounded-2xl bg-surface-container-low mt-space-md shadow-inner flex items-center gap-space-md">
+<span class="font-display-hero text-headline-lg text-primary-container">48h</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-sm text-on-surface">Average Production Turnaround</span>
+<span class="font-body-sm text-xs text-on-surface-variant">From script approval to finalized high-res renders</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-space-lg">
+<!-- Block 1 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all shadow-md flex flex-col gap-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-xl">speed</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs">Faster Production</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              48-hour delivery vs 3–4 weeks for traditional creator shipping, creator contract delays, and video revisions.
+            </p>
+</div>
+<!-- Block 2 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all shadow-md flex flex-col gap-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-xl">target</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs">Built for Paid Ads</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Engineered natively for Meta Advantage+ and TikTok algorithm first-frame retention and scroll-stopping impact.
+            </p>
+</div>
+<!-- Block 3 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all shadow-md flex flex-col gap-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-xl">group_add</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs">More Possibilities</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Infinite creator demographic matching (age, dialect, aesthetics) without agency casting fees or talent residuals.
+            </p>
+</div>
+<!-- Block 4 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all shadow-md flex flex-col gap-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-xl">all_inclusive</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs">Scalable Creative System</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Easily spin 1 winning angle into 20 variations to maintain lower customer acquisition costs and scale ad budgets.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. CREATIVE PERFORMANCE & TESTING FRAMEWORK -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface-container-lowest relative overflow-hidden">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="flex flex-col items-center text-center max-w-2xl mx-auto gap-space-xs mb-space-3xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">THE TESTING ENGINE</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+          More Creative. More Testing. <span class="text-primary-container">More Opportunities to Win.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Ad networks are dynamic creative engines. Our systematic matrix approach feeds algorithms what they crave.
+        </p>
+</div>
+<!-- Schematic Matrix Flow Container -->
+<div class="p-space-xl lg:p-space-2xl rounded-3xl bg-surface-container shadow-2xl relative">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md items-center text-center">
+<!-- Node 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-high flex flex-col items-center gap-space-xs shadow-md">
+<span class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">package_2</span>
+</span>
+<span class="font-label-sm text-xs text-primary uppercase font-bold">Foundation</span>
+<h4 class="font-headline-sm text-base text-on-surface">1 Hero Product</h4>
+<span class="font-body-sm text-xs text-on-surface-variant">Core Value Prop</span>
+</div>
+<!-- Connector 1 -->
+<div class="hidden lg:flex justify-center text-primary-container">
+<span class="material-symbols-outlined text-2xl">arrow_forward</span>
+</div>
+<!-- Node 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-high flex flex-col items-center gap-space-xs shadow-md">
+<span class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">electric_bolt</span>
+</span>
+<span class="font-label-sm text-xs text-primary uppercase font-bold">First 3 Sec</span>
+<h4 class="font-headline-sm text-base text-on-surface">5 Winning Hooks</h4>
+<span class="font-body-sm text-xs text-on-surface-variant">Pattern Interrupts</span>
+</div>
+<!-- Connector 2 -->
+<div class="hidden lg:flex justify-center text-primary-container">
+<span class="material-symbols-outlined text-2xl">close</span>
+</div>
+<!-- Node 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-high flex flex-col items-center gap-space-xs shadow-md">
+<span class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">switch_account</span>
+</span>
+<span class="font-label-sm text-xs text-primary uppercase font-bold">Demographics</span>
+<h4 class="font-headline-sm text-base text-on-surface">3 AI Creators</h4>
+<span class="font-body-sm text-xs text-on-surface-variant">Audience Match</span>
+</div>
+</div>
+<!-- Result Banner -->
+<div class="mt-space-xl p-space-lg rounded-2xl bg-surface-container-lowest flex flex-col md:flex-row items-center justify-between gap-space-md shadow-inner">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold font-headline-sm">
+              =
+            </div>
+<div class="flex flex-col text-left">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">60 Unique Creative Combinations</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Continuous algorithmic testing prevents ad saturation and protects blended ROAS.</span>
+</div>
+</div>
+<a class="font-label-lg text-label-lg text-primary-container hover:underline whitespace-nowrap" href="#get-started">
+            Build Your Matrix →
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. CLIENT TESTIMONIALS / FEEDBACK (#testimonials) -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface relative" id="testimonials">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="flex flex-col items-center text-center max-w-2xl mx-auto gap-space-xs mb-space-3xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">PERFORMANCE FEEDBACK</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+          Loved by Brands &amp; <span class="text-primary-container">Media Buyers.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          See how high-growth e-commerce leaders are scaling their paid acquisition pipelines.
+        </p>
+</div>
+<!-- 3 Testimonial Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Testimonial 1 -->
+<div class="p-space-xl rounded-2xl bg-surface-container-low flex flex-col justify-between gap-space-md shadow-md hover:-translate-y-1 transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex text-primary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              “Real client feedback will be displayed here. The speed at which INKNOVIO outputs 10 fresh hook variants has completely transformed our Meta Advantage+ testing cadence.”
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">MS</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-sm text-on-surface font-semibold">Marcus Sterling</span>
+<span class="font-body-sm text-xs text-on-surface-variant">Head of Growth, Aura DTC</span>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-space-xl rounded-2xl bg-surface-container-low flex flex-col justify-between gap-space-md shadow-md hover:-translate-y-1 transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex text-primary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              “Real client feedback will be displayed here. We cut creator onboarding costs by 65% while testing 4 times as many creative angles per sprint. Highly recommended.”
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">SK</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-sm text-on-surface font-semibold">Sarah Kowalski</span>
+<span class="font-body-sm text-xs text-on-surface-variant">Founder, GlowBotany</span>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-space-xl rounded-2xl bg-surface-container-low flex flex-col justify-between gap-space-md shadow-md hover:-translate-y-1 transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex text-primary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              “Real client feedback will be displayed here. The photorealism of the avatars and the native cadence of the scripts makes these indistinguishable from top organic TikTok creators.”
+            </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">DC</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-sm text-on-surface font-semibold">David Chen</span>
+<span class="font-body-sm text-xs text-on-surface-variant">Paid Media Director, ScaleVeloce</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 10. ABOUT US NARRATIVE SECTION -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface-container-lowest relative">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<!-- Left Image / Visual Badge -->
+<div class="lg:col-span-6 relative">
+<div class="relative w-full h-[400px] rounded-3xl overflow-hidden shadow-2xl bg-surface-container">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Futuristic high-tech agency studio workspace with direct-response strategists collaborating near illuminated dark glass interfaces and cyan holographic video editing timelines." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDLECv9DP_0ulN0w53R02QB0gq3i-RFu59WB13lPPauTBYLUZAn2ImqljDNkrrI7hu6T12HIpfBrY4cqVvyR1hfdW1bunRiJ4AK1-t4DbpsqEQqCM49Yn9usaS6Sa_QXU0qIn5esdYliJQVXf5TI00ONTWKL54FKjImxVL5L5LquFEYr0lAAd0uHDbW7npZN5p5L3q7S3rqScWD7SJ0rrrPfsuxmZzxxs3DReVkT-K7RojhuhFhLqZ2RQ&quot;);"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/30 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 p-space-md bg-surface/85 backdrop-blur-md rounded-2xl">
+<span class="font-label-sm text-xs text-primary-container font-semibold uppercase">The INKNOVIO Manifesto</span>
+<p class="font-headline-sm text-sm text-on-surface mt-1">“Advertising performance is won in the first 3 seconds of creative attention.”</p>
+</div>
+</div>
+</div>
+<!-- Right Content -->
+<div class="lg:col-span-6 flex flex-col items-start gap-space-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">ABOUT INKNOVIO TECH</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+            Creative Thinking. <span class="text-primary-container">AI-Powered Production.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            INKNOVIO TECH operates at the intersection of direct-response psychology and cutting-edge computational media. We recognized that media buyers were held back not by bidding strategies, but by the slow, fragile bottleneck of manual creator coordination.
+          </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            By building an enterprise generative video pipeline, we empower brands to run high-tempo creative experimentation. We don’t just generate clips; we craft scroll-stopping digital assets engineered to convert impressions into sustainable revenue.
+          </p>
+<div class="flex items-center gap-space-xl pt-space-xs">
+<div>
+<span class="font-display-hero text-headline-lg text-on-surface">250K+</span>
+<p class="font-body-sm text-xs text-on-surface-variant">Hooks Analyzed</p>
+</div>
+<div>
+<span class="font-display-hero text-headline-lg text-primary-container">&lt;48h</span>
+<p class="font-body-sm text-xs text-on-surface-variant">Render Turnaround</p>
+</div>
+<div>
+<span class="font-display-hero text-headline-lg text-on-surface">100%</span>
+<p class="font-body-sm text-xs text-on-surface-variant">Commercial Rights</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 11. FAQ ACCORDION (#faq) -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface relative" id="faq">
+<div class="max-w-[860px] mx-auto px-gutter-desktop">
+<div class="flex flex-col items-center text-center gap-space-xs mb-space-3xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">CLEAR ANSWERS</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+          Frequently Asked <span class="text-primary-container">Questions.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Everything you need to know about our AI UGC creative pipeline.
+        </p>
+</div>
+<!-- FAQ Items List -->
+<div class="flex flex-col gap-space-sm" id="faq-accordion">
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">Does the video look like a real person made it?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Yes. Our AI UGC is designed to feel natural, authentic, and native to platforms like TikTok, Instagram, and Facebook. We focus on realistic expressions, natural movement, conversational delivery, and ad styles that don't feel overly polished or “AI-generated.”</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">Can you create a specific type of person/avatar for my brand?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Yes. We can create avatars based on the audience and image you want your brand to represent. You can choose factors such as age, gender, appearance, personality, and overall style so the creator feels relevant to your target customer.</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">Can the AI person speak naturally?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Yes. We create conversational delivery rather than a robotic voiceover. The script, pacing, pauses, expressions, and tone are designed to make the person sound like they're naturally talking to the viewer.</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">Can you match a specific accent, gender, age, or language?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Yes. We can tailor the avatar and voice to your target audience, including different genders, age groups, accents, and supported languages. This helps the ad feel more relevant to the people you're trying to reach.</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">Can you create different hooks and angles for A/B testing?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Absolutely. We can build multiple creative angles around the same product instead of relying on one idea. For example, we can test different hooks around a problem, benefit, curiosity, testimonial, objection, or offer to identify which messaging gets the strongest response.</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">Can you create multiple variations from one script?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Yes. One core script can be turned into multiple variations using different avatars, hooks, openings, visuals, pacing, CTAs, and creative directions. This gives you more testing opportunities without having to start from zero every time.</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">Can you improve an existing ad that isn't converting?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Yes. We can analyze your existing creative and identify areas that may be hurting performance, such as the hook, pacing, messaging, structure, visuals, or CTA. From there, we can create improved versions designed to give you stronger creative options to test.</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">How quickly can you deliver an AI UGC ad?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Most AI UGC ads can be delivered within <strong>24–72 hours</strong>, depending on the number of creatives and the requirements of the project. We keep the process streamlined so you can get new creatives into testing quickly.</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low transition-all duration-200 overflow-hidden shadow-sm">
+<button class="faq-trigger w-full flex items-center justify-between p-space-lg text-left focus:outline-none cursor-pointer">
+<span class="font-headline-sm text-base text-on-surface font-semibold">Can you create a full testing batch instead of just one ad?</span>
+<span class="faq-icon material-symbols-outlined text-primary-container transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg text-on-surface-variant font-body-md text-body-md">Yes. In fact, testing multiple creatives is often more useful than relying on a single ad. We can create a complete batch with different hooks, angles, avatars, and variations so you have multiple creatives ready to test and compare.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 12. GET STARTED / LEAD INTAKE MODULE (#get-started) -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface-container-lowest relative" id="get-started">
+<div class="max-w-[1000px] mx-auto px-gutter-desktop">
+<div class="p-space-xl lg:p-space-3xl rounded-3xl bg-surface-container shadow-2xl relative overflow-hidden">
+<!-- Ambient decorative corner highlight -->
+<div class="absolute -top-24 -right-24 w-72 h-72 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col items-center text-center max-w-xl mx-auto gap-space-xs mb-space-xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">START YOUR PROJECT</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+            Ready to Create Your <span class="text-primary-container">Next Winning Ad?</span>
+</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Tell us about your product and campaign. We will help you turn your idea into scroll-stopping AI UGC creative within 48 hours.
+          </p>
+</div>
+<!-- Intake Form -->
+<form class="flex flex-col gap-space-md max-w-lg mx-auto" id="lead-form">
+<div class="hidden rounded-xl border border-red-400/40 bg-red-400/10 px-space-md py-space-sm text-left text-sm text-red-200" id="lead-error" role="alert"></div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider" for="lead-name">Name</label>
+<input class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm" id="lead-name" name="name" placeholder="Your name" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider" for="lead-email">Email</label>
+<input class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm" id="lead-email" name="email" placeholder="Your email address" required="" type="email">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider" for="lead-description">Product Description</label>
+<textarea class="w-full min-h-28 px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm resize-y" id="lead-description" name="productDescription" placeholder="Tell us about your product" required=""></textarea>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider" for="lead-spend">Estimated Monthly Ad Spend</label>
+<select class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm" id="lead-spend" name="spend" required="">
+<option value="">Select an estimated monthly ad spend</option>
+<option value="$1,000">$1,000</option>
+<option value="$5,000">$5,000</option>
+<option value="$10,000">$10,000</option>
+<option value="Custom Price">Custom Price</option>
+</select>
+</div>
+<div class="hidden flex-col gap-1" id="custom-spend-field">
+<label class="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider" for="custom-spend">Custom Monthly Ad Spend</label>
+<input class="w-full px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm" id="custom-spend" name="customSpend" placeholder="Enter your estimated monthly ad spend" type="text">
+</div>
+<button class="w-full inline-flex items-center justify-center font-label-lg text-label-lg text-on-primary-container bg-primary-container hover:bg-primary-fixed hover:text-on-primary-fixed py-space-md rounded-full shadow-[0_0_24px_rgba(0,240,208,0.4)] hover:shadow-[0_0_36px_rgba(0,240,208,0.6)] hover:-translate-y-0.5 transition-all mt-space-xs cursor-pointer" type="submit">
+            Start Your Project →
+          </button>
+<div class="flex flex-col items-center gap-space-xs pt-space-sm text-center">
+<span class="font-body-sm text-xs text-on-surface-variant">Or book a 15-minute strategy call</span>
+<button class="inline-flex items-center justify-center font-label-lg text-label-lg text-primary-container border border-primary-container/50 hover:bg-primary-container/10 px-space-lg py-space-sm rounded-full transition-all cursor-pointer" id="open-strategy-call" type="button">Book a Meeting</button>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-xs pt-space-xs text-center">
+<span class="font-body-sm text-[11px] text-on-surface-variant">
+              100% Confidential • NDA Protected
+            </span>
+</div>
+<!-- Trust Reassurance Checklist -->
+<div class="flex flex-wrap items-center justify-center gap-space-md pt-space-md text-on-surface-variant text-xs">
+<span class="flex items-center gap-1 text-primary-container font-medium">✓ No lengthy retainers</span>
+<span class="flex items-center gap-1 text-primary-container font-medium">✓ 48-Hour delivery</span>
+<span class="flex items-center gap-1 text-primary-container font-medium">✓ Full commercial rights</span>
+</div>
+</form>
+<div class="hidden fixed inset-0 z-[60] items-center justify-center bg-black/70 px-4 py-8" id="strategy-modal" role="dialog" aria-modal="true" aria-labelledby="strategy-title">
+<div class="w-full max-w-3xl max-h-full overflow-y-auto rounded-3xl bg-surface-container p-space-xl shadow-2xl">
+<div class="flex items-start justify-between gap-space-md mb-space-lg">
+<div><span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">BOOK A MEETING</span><h3 class="font-headline-md text-headline-md text-on-surface mt-1" id="strategy-title">Tell us about your product</h3></div>
+<button class="text-on-surface-variant hover:text-on-surface text-2xl" id="close-strategy-call" type="button" aria-label="Close">×</button>
+</div>
+<form class="flex flex-col gap-space-md" id="strategy-form" enctype="multipart/form-data">
+<div class="hidden rounded-xl border border-red-400/40 bg-red-400/10 px-space-md py-space-sm text-sm text-red-200" id="strategy-error" role="alert"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<label class="flex flex-col gap-1 font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">Name<input class="mt-1 px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm" name="name" placeholder="Your full name" required="" type="text"></label>
+<label class="flex flex-col gap-1 font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">Email<input class="mt-1 px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm" name="email" placeholder="you@example.com" required="" type="email"></label>
+</div>
+<label class="flex flex-col gap-1 font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">Niche<input class="mt-1 px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm" name="niche" placeholder="Beauty, fitness, tech, fashion, etc." required="" type="text"></label>
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">Targeted Platforms</span>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-space-sm">
+<label class="flex items-center gap-2 text-sm text-on-surface-variant"><input type="checkbox" name="targetedPlatforms" value="Instagram"> Instagram</label>
+<label class="flex items-center gap-2 text-sm text-on-surface-variant"><input type="checkbox" name="targetedPlatforms" value="TikTok"> TikTok</label>
+<label class="flex items-center gap-2 text-sm text-on-surface-variant"><input type="checkbox" name="targetedPlatforms" value="YouTube"> YouTube</label>
+<label class="flex items-center gap-2 text-sm text-on-surface-variant"><input type="checkbox" name="targetedPlatforms" value="Facebook"> Facebook</label>
+<label class="flex items-center gap-2 text-sm text-on-surface-variant"><input type="checkbox" name="targetedPlatforms" value="Other"> Other</label>
+</div>
+</div>
+<label class="flex flex-col gap-1 font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">Upload Product Image<input class="mt-1 block w-full text-sm text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-on-primary-container hover:file:bg-primary-fixed" name="productImage" accept="image/jpeg,image/png,image/webp,image/jpg" type="file"></label>
+<label class="flex flex-col gap-1 font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">Product Details &amp; Requirements<textarea class="mt-1 min-h-40 md:min-h-48 px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline normal-case tracking-normal focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm resize-y" name="productDetailsRequirements" placeholder="Describe your product, use case, key selling points, and exactly what you want created or improved" required=""></textarea></label>
+<input name="productImageDataUrl" type="hidden">
+<input name="productImageName" type="hidden">
+<button class="w-full inline-flex items-center justify-center font-label-lg text-label-lg text-on-primary-container bg-primary-container hover:bg-primary-fixed hover:text-on-primary-fixed py-space-md rounded-full shadow-[0_0_24px_rgba(0,240,208,0.4)] hover:shadow-[0_0_36px_rgba(0,240,208,0.6)] hover:-translate-y-0.5 transition-all cursor-pointer" type="submit">Send Meeting Request →</button>
+</form>
+<div class="hidden flex-col items-center text-center p-space-lg gap-space-sm" id="strategy-success"><div class="w-14 h-14 rounded-full bg-primary-container/20 text-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-3xl">check_circle</span></div><h3 class="font-headline-sm text-headline-sm text-on-surface">Request Received!</h3><p class="font-body-md text-body-md text-on-surface-variant">We will contact you shortly with next steps for your meeting.</p></div>
+</div>
+</div>
+<!-- Form Success State -->
+<div class="hidden flex flex-col items-center text-center p-space-xl gap-space-sm" id="form-success">
+<div class="w-16 h-16 rounded-full bg-primary-container/20 text-primary-container flex items-center justify-center mb-space-xs">
+<span class="material-symbols-outlined text-4xl">check_circle</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Information Received!</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            Our creative strategy team will review your product URL and return initial hook angles and a proposal within 12 business hours.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 13. FINAL INSPIRATIONAL CTA -->
+<section class="py-space-3xl lg:py-space-4xl bg-surface relative overflow-hidden">
+<div class="max-w-[1240px] mx-auto px-gutter-desktop">
+<div class="relative p-space-2xl lg:p-space-4xl rounded-3xl bg-surface-container-high overflow-hidden shadow-2xl text-center flex flex-col items-center gap-space-md">
+<!-- Deep Cyan Underglow -->
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container/10 via-tertiary-fixed/10 to-primary-container/10 pointer-events-none"></div>
+<div class="absolute -bottom-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/20 blur-3xl pointer-events-none rounded-full"></div>
+<span class="relative z-10 font-label-sm text-label-sm text-primary uppercase tracking-widest">JOIN FORWARD-THINKING BRANDS</span>
+<h2 class="relative z-10 font-display-hero text-display-hero-mobile lg:text-display-hero text-on-surface max-w-2xl">
+          Your Next Winning Ad <span class="bg-gradient-to-r from-primary-container via-tertiary to-primary bg-clip-text text-transparent">Starts Here.</span>
+</h2>
+<p class="relative z-10 font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+          Turn your product into high-converting creative people actually want to watch. Scale your ad accounts with precision.
+        </p>
+<a class="relative z-10 inline-flex items-center justify-center font-label-lg text-label-lg text-on-primary-container bg-primary-container hover:bg-primary-fixed hover:text-on-primary-fixed px-space-2xl py-space-md rounded-full shadow-[0_0_30px_rgba(0,240,208,0.5)] hover:shadow-[0_0_45px_rgba(0,240,208,0.75)] hover:-translate-y-0.5 transition-all mt-space-xs" href="#get-started">
+          Create My Ads →
+        </a>
+</div>
+</div>
+</section>
+<!-- Micro-Interactions Inline Vanilla JS -->
+<script>
+    // FAQ Accordion Handler
+    document.querySelectorAll('#faq-accordion .faq-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        const content = item.querySelector('.faq-content');
+        const icon = trigger.querySelector('.faq-icon');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Close all items
+        document.querySelectorAll('#faq-accordion .faq-content').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('#faq-accordion .faq-icon').forEach(i => {
+          i.textContent = 'add';
+          i.classList.remove('rotate-45');
+        });
+
+        // Toggle current item
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          icon.textContent = 'close';
+          icon.classList.add('rotate-45');
+        }
+      });
+    });
+
+    // Portfolio Filter Switcher
+    document.querySelectorAll('#portfolio-filters .filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#portfolio-filters .filter-btn').forEach(b => {
+          b.className = 'filter-btn px-space-md py-space-xs rounded-full font-label-sm text-xs bg-surface-container text-on-surface-variant hover:text-on-surface transition-all';
+        });
+        btn.className = 'filter-btn active px-space-md py-space-xs rounded-full font-label-sm text-xs bg-primary-container text-on-primary-container transition-all';
+      });
+    });
+
+    const submitJsonForm = async (form, endpoint, errorElement, successElement, successForm) => {
+      errorElement.classList.add('hidden');
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Please check your information and try again.');
+      successForm.classList.add('hidden');
+      successElement.classList.remove('hidden');
+    };
+
+    const fileToDataUrl = (file) => new Promise((resolve, reject) => {
+      if (!file) return resolve('');
+      const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+      if (!validTypes.includes(file.type)) return reject(new Error('Please upload a JPG, JPEG, PNG, or WEBP image.'));
+      if (file.size > 10 * 1024 * 1024) return reject(new Error('The product image must be 10MB or smaller.'));
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ''));
+      reader.onerror = () => reject(new Error('Your image could not be read. Please try again.'));
+      reader.readAsDataURL(file);
+    });
+
+    const leadForm = document.getElementById('lead-form');
+    const leadError = document.getElementById('lead-error');
+    const customSpendField = document.getElementById('custom-spend-field');
+    const customSpend = document.getElementById('custom-spend');
+    document.getElementById('lead-spend').addEventListener('change', (event) => {
+      const isCustom = event.target.value === 'Custom Price';
+      customSpendField.classList.toggle('hidden', !isCustom);
+      customSpendField.classList.toggle('flex', isCustom);
+      customSpend.required = isCustom;
+    });
+    leadForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = leadForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      try {
+        await submitJsonForm(leadForm, '/api/leads', leadError, document.getElementById('form-success'), leadForm);
+      } catch (error) {
+        leadError.textContent = error.message;
+        leadError.classList.remove('hidden');
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    const strategyModal = document.getElementById('strategy-modal');
+    const strategyForm = document.getElementById('strategy-form');
+    const strategyError = document.getElementById('strategy-error');
+    const openStrategyCall = () => {
+      strategyModal.classList.remove('hidden');
+      strategyModal.classList.add('flex');
+    };
+    const closeStrategyCall = () => {
+      strategyModal.classList.add('hidden');
+      strategyModal.classList.remove('flex');
+    };
+    document.getElementById('open-strategy-call').addEventListener('click', openStrategyCall);
+    document.getElementById('close-strategy-call').addEventListener('click', closeStrategyCall);
+    strategyModal.addEventListener('click', (event) => {
+      if (event.target === strategyModal) closeStrategyCall();
+    });
+    strategyForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = strategyForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      const fileInput = strategyForm.querySelector('input[name="productImage"]');
+      const productImage = fileInput?.files?.[0];
+      const data = Object.fromEntries(new FormData(strategyForm));
+      try {
+        const selectedPlatforms = [...strategyForm.querySelectorAll('input[name="targetedPlatforms"]:checked')].map((item) => item.value);
+        if (!selectedPlatforms.length) throw new Error('Please select at least one targeted platform.');
+        if (!data.name || String(data.name).trim().length < 2) throw new Error('Please enter your full name.');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(data.email || ''))) throw new Error('Please enter a valid email address.');
+        if (!data.niche || String(data.niche).trim().length < 2) throw new Error('Please enter your niche.');
+        if (!productImage) throw new Error('Please upload a product image.');
+        if (!data.productDetailsRequirements || String(data.productDetailsRequirements).trim().length < 10) throw new Error('Please add your product details and requirements.');
+        const imageData = productImage ? await fileToDataUrl(productImage) : '';
+        if (productImage && !imageData) throw new Error('Please upload a valid product image.');
+        strategyForm.productImageDataUrl.value = imageData;
+        strategyForm.productImageName.value = productImage ? productImage.name : '';
+        const payload = {
+          name: data.name,
+          email: data.email,
+          niche: data.niche,
+          targetedPlatforms: selectedPlatforms,
+          productDetailsRequirements: data.productDetailsRequirements,
+          productImageDataUrl: imageData,
+          productImageName: productImage ? productImage.name : ''
+        };
+        const response = await fetch('/api/strategy-calls', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Your submission could not be sent.');
+        strategyForm.reset();
+        strategyForm.classList.add('hidden');
+        document.getElementById('strategy-success').classList.remove('hidden');
+        document.getElementById('strategy-success').classList.add('flex');
+      } catch (error) {
+        strategyError.textContent = error.message;
+        strategyError.classList.remove('hidden');
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    const bindLogoScroll = () => {
+      document.querySelectorAll('a.brand-logo-link').forEach((logoLink) => {
+        if (logoLink.dataset.scrollBound) return;
+        logoLink.dataset.scrollBound = 'true';
+        logoLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          window.history.replaceState(null, '', '#home');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
+        });
+      });
+    };
+    bindLogoScroll();
+    document.addEventListener('DOMContentLoaded', bindLogoScroll);
+
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest pt-space-4xl pb-space-2xl shadow-[0_-1px_16px_rgba(0,0,0,0.6)]"><div class="max-w-[1240px] mx-auto px-gutter-desktop"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-2xl pb-space-3xl"><div class="lg:col-span-5 flex flex-col items-start gap-space-md"><div class="flex items-center gap-space-sm"><a class="brand-logo-link focus:outline-none" href="#" aria-label="INKNOVIO TECH home"><img src="assets/inknovio-logo.png" alt="INKNOVIO TECH" class="brand-logo brand-logo-footer"></a></div><p class="font-body-md text-body-md text-on-surface-variant max-w-md">High-converting AI UGC ad creatives engineered for modern advertising teams and fast-growing brands.</p><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xxs rounded-full bg-surface-container-low shadow-[0_2px_8px_rgba(0,0,0,0.4)]"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Enterprise Creative Engine</span></div></div><div class="lg:col-span-2 flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface tracking-wider uppercase">Navigation</span><ul class="flex flex-col gap-space-xs"><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#home">Home</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="services" href="#services">Services</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="how-it-works" href="#how-it-works">How It Works</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="work" href="#work">Work</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="about" href="#about">About</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="faq" href="#faq">FAQ</a></li></ul></div><div class="lg:col-span-3 flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface tracking-wider uppercase">Creative Services</span><ul class="flex flex-col gap-space-xs"><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">AI UGC Video Ads</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Virtual Avatars</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Hook Testing</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Product Storytelling</a></li></ul></div><div class="lg:col-span-2 flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface tracking-wider uppercase">Legal &amp; Connect</span><ul class="flex flex-col gap-space-xs"><li role="none" class=""><a class="font-body-sm text-body-sm text-primary-container hover:underline transition-all whitespace-nowrap sm:whitespace-nowrap" href="mailto:info.inknoviotech@gmail.com">info.inknoviotech@gmail.com</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="privacy-policy" href="#">Privacy Policy</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="terms-of-service" href="#">Terms of Service</a></li></ul></div></div><div class="pt-space-xl flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant"><span class="font-body-sm text-body-sm">© 2026 INKNOVIO TECH. All rights reserved.</span><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xxs rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-primary-container"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Platform Status: Operational</span></div></div></div></footer>
+
+<style>@media (min-width:1280px){header>div>nav{position:absolute;left:50%;transform:translateX(-50%)}}</style><script src="app.js" defer></script></body></html>
