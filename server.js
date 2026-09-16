@@ -50,6 +50,8 @@ app.use(cookieSession({
   secure: process.env.NODE_ENV === 'production',
   maxAge: 1000 * 60 * 60 * 24 * 7
 }));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(__dirname));
 app.get('/', (request, response) => response.sendFile(path.join(__dirname, 'code.html')));
 
