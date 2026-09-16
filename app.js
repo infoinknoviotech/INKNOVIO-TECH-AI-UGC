@@ -9,12 +9,9 @@
   const navigation = document.querySelector('header nav');
   const howItWorksLink = navigation?.querySelector('a[data-path="how-it-works"]');
   if (howItWorksLink) {
-    const contactLink = howItWorksLink.cloneNode(true);
-    contactLink.textContent = 'Contact Us';
-    contactLink.dataset.path = 'contact';
-    contactLink.href = '#get-started';
-    howItWorksLink.remove();
-    navigation.append(contactLink);
+    howItWorksLink.textContent = 'Contact Now';
+    howItWorksLink.dataset.path = 'contact';
+    howItWorksLink.href = '#get-started';
   }
   const footerServices = [...document.querySelectorAll('footer span')].find((item) => item.textContent.trim() === 'Creative Services');
   footerServices?.parentElement?.querySelectorAll('a[href="#"]').forEach((link) => {
