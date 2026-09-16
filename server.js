@@ -50,6 +50,20 @@ app.use(cookieSession({
   secure: process.env.NODE_ENV === 'production',
   maxAge: 1000 * 60 * 60 * 24 * 7
 }));
+
+const rootStaticFiles = [
+  'app.js',
+  'code.html',
+  'screen.png',
+  'favicon.ico'
+];
+
+rootStaticFiles.forEach((fileName) => {
+  app.get(`/${fileName}`, (request, response) => {
+    response.sendFile(path.join(__dirname, fileName));
+  });
+});
+
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(__dirname));
