@@ -66,6 +66,11 @@ rootStaticFiles.forEach((fileName) => {
   });
 });
 
+app.get('/api/index.js', (request, response, next) => {
+  if (request.query.asset !== 'app.js') return next();
+  response.sendFile(path.join(__dirname, 'app.js'));
+});
+
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(__dirname));
