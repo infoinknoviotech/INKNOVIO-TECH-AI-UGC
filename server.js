@@ -9,6 +9,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
+app.set('trust proxy', 1);
 const port = Number(process.env.PORT || 3000);
 const sessionSecret = process.env.SESSION_SECRET || 'inknovio-session-secret-fallback';
 const localSqlitePath = path.join(process.env.VERCEL ? os.tmpdir() : __dirname, 'data.sqlite');
@@ -42,12 +43,13 @@ async function addUserColumn(sql) {
 }
 const userMigrationReady = databaseReady;
 
+const isProduction = process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
 app.use(cookieSession({
   name: 'session',
   keys: [sessionSecret],
   httpOnly: true,
   sameSite: 'lax',
-  secure: process.env.NODE_ENV === 'production',
+  secure: isProduction,
   maxAge: 1000 * 60 * 60 * 24 * 7
 }));
 
