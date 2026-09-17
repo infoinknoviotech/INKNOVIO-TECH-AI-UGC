@@ -1,4 +1,28 @@
 (() => {
+  const cursorGlow = document.querySelector('.cursor-glow');
+  if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+    let targetX = window.innerWidth * 0.5;
+    let targetY = window.innerHeight * 0.2;
+    let currentX = targetX;
+    let currentY = targetY;
+    let animationFrame;
+    const renderGlow = () => {
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+      cursorGlow.style.setProperty('--cursor-x', `${currentX}px`);
+      cursorGlow.style.setProperty('--cursor-y', `${currentY}px`);
+      animationFrame = requestAnimationFrame(renderGlow);
+    };
+    const handlePointerMove = (event) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      cursorGlow.classList.add('is-visible');
+    };
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    animationFrame = requestAnimationFrame(renderGlow);
+    window.addEventListener('pagehide', () => cancelAnimationFrame(animationFrame), { once: true });
+  }
+
   const nicheSubcategories = {
     'Beauty & Personal Care': [],
     'Fashion & Apparel': [],
