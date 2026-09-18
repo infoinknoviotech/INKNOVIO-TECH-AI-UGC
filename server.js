@@ -11,17 +11,33 @@ require('dotenv').config();
 const app = express();
 app.set('trust proxy', 1);
 const port = Number(process.env.PORT || 3000);
-const sessionSecret = process.env.SESSION_SECRET || 'inknovio-session-secret-fallback';
+const fallbackSessionSecret = crypto.randomBytes(32).toString('hex');
+const sessionSecret = process.env.SESSION_SECRET || fallbackSessionSecret;
 const localSqlitePath = path.join(process.env.VERCEL ? os.tmpdir() : __dirname, 'data.sqlite');
 const databaseUrl = process.env.TURSO_DATABASE_URL || `file:${localSqlitePath}`;
 const databaseToken = process.env.TURSO_AUTH_TOKEN;
 const smtpUser = process.env.SMTP_USER?.trim();
 const smtpPass = process.env.SMTP_PASS?.replace(/\s+/g, '');
 const smtpPassFormatValid = /^[a-zA-Z0-9]{16}$/.test(smtpPass || '');
+const isProduction = process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
 
 app.use(express.json({ limit: '10mb' }));
-if (!process.env.SESSION_SECRET) {
-  console.warn('SESSION_SECRET is missing; using a fallback secret for this deployment. Add a real secret in Vercel or .env for stable sessions.');
+app.use((request, response, next) => {
+  const origin = request.headers.origin;
+  const allowedOriginPattern = /^(https?:\/\/localhost(?::\d+)?|https?:\/\/127\.0\.0\.1(?::\d+)?|https?:\/\/.*\.vercel\.app)$/i;
+  if (origin && allowedOriginPattern.test(origin)) {
+    response.setHeader('Access-Control-Allow-Origin', origin);
+    response.setHeader('Access-Control-Allow-Credentials', 'true');
+    response.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  }
+  if (request.method === 'OPTIONS') return response.sendStatus(204);
+  next();
+});
+if (!process.env.SESSION_SECRET && !isProduction) {
+  console.warn('SESSION_SECRET is missing; using a generated local secret for development. Set SESSION_SECRET in .env or Vercel for stable sessions.');
+} else if (!process.env.SESSION_SECRET && isProduction) {
+  console.warn('SESSION_SECRET is missing in production. Set a stable SESSION_SECRET in Vercel to avoid session resets between deployments and cold starts.');
 }
 
 if (process.env.NODE_ENV === 'production' && !process.env.TURSO_DATABASE_URL) {
@@ -43,7 +59,6 @@ async function addUserColumn(sql) {
 }
 const userMigrationReady = databaseReady;
 
-const isProduction = process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
 app.use(cookieSession({
   name: 'session',
   keys: [sessionSecret],
