@@ -94,6 +94,27 @@ app.get('/', (request, response) => response.sendFile(path.join(__dirname, 'code
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,72}$/;
 
+function normalizeText(value) {
+  return String(value ?? '').trim();
+}
+
+function normalizeLeadPayload(payload = {}) {
+  const name = normalizeText(payload.name || payload.fullName);
+  const email = normalizeText(payload.email || '').toLowerCase();
+  const rawSpend = normalizeText(payload.spend || payload.estimatedMonthlyAdSpend || payload.estimatedSpend || payload.budget || '');
+  const rawCustomSpend = normalizeText(payload.customSpend || payload.customBudget || payload.customPrice || '');
+  const productDescriptionParts = [
+    normalizeText(payload.productDescription || payload.leadDescription || payload.productDetails || payload.description || payload.message || payload.projectDescription),
+    payload.phone ? `Phone: ${normalizeText(payload.phone)}` : '',
+    payload.productUrl ? `Product URL: ${normalizeText(payload.productUrl)}` : '',
+    payload.website ? `Website: ${normalizeText(payload.website)}` : '',
+    payload.company ? `Company: ${normalizeText(payload.company)}` : ''
+  ].filter(Boolean);
+  const productDescription = productDescriptionParts.join('\n\n');
+  const spend = rawSpend || (rawCustomSpend ? 'Custom Price' : '');
+  return { name, email, productDescription, spend, customSpend: rawCustomSpend };
+}
+
 function hashPassword(password) {
   const salt = crypto.randomBytes(16).toString('hex');
   const hash = crypto.scryptSync(password, salt, 64).toString('hex');
@@ -224,22 +245,22 @@ if (!transporter) {
 
 app.post('/api/leads', async (request, response) => {
   await databaseReady;
-  const { name, email, productDescription, spend } = request.body || {};
-  const cleanName = String(name || '').trim();
-  const cleanEmail = String(email || '').trim().toLowerCase();
-  const cleanDescription = String(productDescription || '').trim();
+  const { name, email, productDescription, spend, customSpend } = normalizeLeadPayload(request.body || {});
+  const cleanName = name;
+  const cleanEmail = email;
+  const cleanDescription = productDescription;
   const cleanSpend = String(spend || '').trim();
+  const providedCustomSpend = String(customSpend || '').trim();
   const validSpend = ['$1,000', '$5,000', '$10,000', 'Custom Price'].includes(cleanSpend);
-  const customSpend = String(request.body?.customSpend || '').trim();
 
-  if (cleanName.length < 2 || cleanName.length > 80 || !emailPattern.test(cleanEmail) || cleanEmail.length > 254 || cleanDescription.length < 10 || cleanDescription.length > 4000 || !validSpend || (cleanSpend === 'Custom Price' && (customSpend.length < 1 || customSpend.length > 120))) {
+  if (cleanName.length < 2 || cleanName.length > 80 || !emailPattern.test(cleanEmail) || cleanEmail.length > 254 || cleanDescription.length < 10 || cleanDescription.length > 4000 || !validSpend || (cleanSpend === 'Custom Price' && (providedCustomSpend.length < 1 || providedCustomSpend.length > 120))) {
     return response.status(400).json({ error: 'Please complete all fields with valid information.' });
   }
 
   try {
     await database.execute({
       sql: 'INSERT INTO leads (name, email, product_description, spend) VALUES (?, ?, ?, ?)',
-      args: [cleanName, cleanEmail, cleanDescription, cleanSpend === 'Custom Price' ? `Custom Price: ${customSpend}` : cleanSpend]
+      args: [cleanName, cleanEmail, cleanDescription, cleanSpend === 'Custom Price' ? `Custom Price: ${providedCustomSpend}` : cleanSpend]
     });
     if (!transporter) {
       return response.status(503).json({ error: 'Your request was saved, but email delivery is not configured on the server.' });
@@ -255,7 +276,7 @@ app.post('/api/leads', async (request, response) => {
         `Name: ${cleanName}`,
         `Work email: ${cleanEmail}`,
         `Product description: ${cleanDescription}`,
-        `Estimated monthly ad spend: ${cleanSpend === 'Custom Price' ? customSpend : cleanSpend}`
+        `Estimated monthly ad spend: ${cleanSpend === 'Custom Price' ? providedCustomSpend : cleanSpend}`
       ].join('\n')
     });
     return response.json({ ok: true });
@@ -265,6 +286,47 @@ app.post('/api/leads', async (request, response) => {
       return response.status(502).json({ error: 'Gmail rejected the SMTP app password. Generate a new Gmail app password and update .env.' });
     }
     return response.status(500).json({ error: 'Unable to send your request right now.' });
+  }
+});
+
+app.post('/api/contact', async (request, response) => {
+  const payload = request.body || {};
+  const name = normalizeText(payload.name || payload.fullName);
+  const email = normalizeText(payload.email || '').toLowerCase();
+  const subject = normalizeText(payload.subject || payload.projectType || 'General inquiry');
+  const message = normalizeText(payload.message || payload.details || payload.description || payload.projectDescription);
+
+  if (name.length < 2 || name.length > 80 || !emailPattern.test(email) || email.length > 254 || message.length < 10 || message.length > 4000) {
+    return response.status(400).json({ error: 'Please provide a valid name, email, and message.' });
+  }
+
+  try {
+    if (!transporter) {
+      return response.status(503).json({ error: 'Your contact request was received, but email delivery is not configured on the server.' });
+    }
+    await transporter.sendMail({
+      from: smtpUser,
+      to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
+      replyTo: email,
+      subject: `New INKNOVIO TECH contact inquiry: ${subject}`,
+      text: [
+        'New contact inquiry',
+        '',
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Subject: ${subject}`,
+        '',
+        'Message:',
+        message
+      ].join('\n')
+    });
+    return response.json({ ok: true, message: 'Your message was sent successfully.' });
+  } catch (error) {
+    console.error('Contact email failed:', error.message);
+    if (error.code === 'EAUTH') {
+      return response.status(502).json({ error: 'Gmail rejected the SMTP app password. Generate a new Gmail app password and update .env.' });
+    }
+    return response.status(500).json({ error: 'Unable to send your message right now.' });
   }
 });
 

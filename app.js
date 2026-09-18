@@ -249,11 +249,19 @@
 
       const name = form.querySelector('[name="name"]').value.trim();
       const email = form.querySelector('[name="email"]').value.trim();
-      const phone = form.querySelector('[name="phone"]').value.trim();
-      const productUrl = form.querySelector('[name="productUrl"]').value.trim();
-      const website = form.querySelector('[name="website"]').value.trim();
-      const spend = form.querySelector('select').value;
-      const lead = { name, email, phone, productUrl, website, spend };
+      const productDescriptionValue = form.querySelector('[name="productDescription"]')?.value.trim() || '';
+      const phone = form.querySelector('[name="phone"]')?.value.trim() || '';
+      const productUrl = form.querySelector('[name="productUrl"]')?.value.trim() || '';
+      const website = form.querySelector('[name="website"]')?.value.trim() || '';
+      const spend = form.querySelector('select')?.value || '';
+      const customSpend = form.querySelector('[name="customSpend"]')?.value.trim() || '';
+      const productDescription = [
+        productDescriptionValue,
+        phone && `Phone: ${phone}`,
+        productUrl && `Product URL: ${productUrl}`,
+        website && `Website: ${website}`
+      ].filter(Boolean).join('\n\n') || 'No product details provided yet.';
+      const lead = { name, email, productDescription, spend, customSpend };
       if (window.location.protocol === 'file:') {
         window.alert('Please run the website with "npm start" before submitting this form.');
         return;
