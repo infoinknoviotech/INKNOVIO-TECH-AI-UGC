@@ -190,7 +190,9 @@ app.post('/api/auth/logout', (request, response) => {
 });
 
 
-const meetingUploadsDir = path.join(__dirname, 'uploads', 'meeting-requests');
+const meetingUploadsDir = process.env.VERCEL
+  ? path.join(os.tmpdir(), 'inknovio-meeting-requests')
+  : path.join(__dirname, 'uploads', 'meeting-requests');
 fs.mkdirSync(meetingUploadsDir, { recursive: true });
 
 function addStrategyCallColumn(sql) {
