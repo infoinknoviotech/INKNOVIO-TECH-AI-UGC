@@ -841,6 +841,7 @@
 </div>
 </div>
 <label class="flex flex-col gap-1 font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">Upload Product Image<input class="mt-1 block w-full text-sm text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-on-primary-container hover:file:bg-primary-fixed" name="productImage" accept="image/jpeg,image/png,image/webp,image/jpg" type="file"></label>
+<div class="flex min-h-10 items-center justify-between gap-space-sm rounded-xl border border-outline/30 bg-surface-container-lowest px-space-md py-space-xs text-xs" id="strategy-file-status" aria-live="polite"><span class="min-w-0 truncate text-on-surface-variant" id="strategy-file-name">No file chosen</span><button class="hidden shrink-0 items-center gap-1 rounded-full border border-red-300/40 px-3 py-1.5 font-semibold normal-case tracking-normal text-red-200 transition-colors hover:border-red-200/70 hover:bg-red-400/10" id="strategy-file-remove" type="button" aria-label="Remove selected product image"><span aria-hidden="true">×</span> Remove</button></div>
 <label class="flex flex-col gap-1 font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">Product Details &amp; Requirements<textarea class="mt-1 min-h-40 md:min-h-48 px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline normal-case tracking-normal focus:outline-none focus:bg-surface-container-high transition-colors shadow-inner text-sm resize-y" name="productDetailsRequirements" placeholder="Describe your product, use case, key selling points, and exactly what you want created or improved" required=""></textarea></label>
 <input name="productImageDataUrl" type="hidden">
 <input name="productImageName" type="hidden">
@@ -949,6 +950,29 @@
     const strategyModal = document.getElementById('strategy-modal');
     const strategyForm = document.getElementById('strategy-form');
     const strategyError = document.getElementById('strategy-error');
+    const strategyFileInput = strategyForm.querySelector('input[name="productImage"]');
+    const strategyFileName = document.getElementById('strategy-file-name');
+    const strategyFileRemove = document.getElementById('strategy-file-remove');
+    const resetStrategyFile = () => {
+      strategyFileInput.value = '';
+      strategyForm.querySelector('input[name="productImageDataUrl"]').value = '';
+      strategyForm.querySelector('input[name="productImageName"]').value = '';
+      strategyFileName.textContent = 'No file chosen';
+      strategyFileName.classList.remove('text-on-surface');
+      strategyFileName.classList.add('text-on-surface-variant');
+      strategyFileRemove.classList.add('hidden');
+      strategyFileRemove.classList.remove('flex');
+    };
+    strategyFileInput.addEventListener('change', () => {
+      const selectedFile = strategyFileInput.files?.[0];
+      if (!selectedFile) return resetStrategyFile();
+      strategyFileName.textContent = selectedFile.name;
+      strategyFileName.classList.remove('text-on-surface-variant');
+      strategyFileName.classList.add('text-on-surface');
+      strategyFileRemove.classList.remove('hidden');
+      strategyFileRemove.classList.add('flex');
+    });
+    strategyFileRemove.addEventListener('click', resetStrategyFile);
     const openStrategyCall = () => {
       strategyModal.classList.remove('hidden');
       strategyModal.classList.add('flex');
@@ -966,8 +990,7 @@
       event.preventDefault();
       const submitButton = strategyForm.querySelector('button[type="submit"]');
       submitButton.disabled = true;
-      const fileInput = strategyForm.querySelector('input[name="productImage"]');
-      const productImage = fileInput?.files?.[0];
+      const productImage = strategyFileInput?.files?.[0];
       const data = Object.fromEntries(new FormData(strategyForm));
       try {
         const selectedPlatforms = [...strategyForm.querySelectorAll('input[name="targetedPlatforms"]:checked')].map((item) => item.value);
