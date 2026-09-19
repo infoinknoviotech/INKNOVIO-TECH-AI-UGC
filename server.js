@@ -19,6 +19,7 @@ const databaseToken = process.env.TURSO_AUTH_TOKEN;
 const smtpUser = process.env.SMTP_USER?.trim();
 const smtpPass = process.env.SMTP_PASS?.replace(/\s+/g, '');
 const smtpPassFormatValid = /^[a-zA-Z0-9]{16}$/.test(smtpPass || '');
+const authNotificationRecipient = (process.env.AUTH_NOTIFICATION_RECIPIENT || process.env.LEAD_RECIPIENT || smtpUser || '').trim();
 const isProduction = process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
 
 app.use(express.json({ limit: '10mb' }));
@@ -122,9 +123,37 @@ function hashPassword(password) {
 }
 
 function verifyPassword(password, storedHash) {
-  const [salt, hash] = storedHash.split(':');
-  const derived = crypto.scryptSync(password, salt, 64).toString('hex');
-  return crypto.timingSafeEqual(Buffer.from(hash, 'hex'), Buffer.from(derived, 'hex'));
+  try {
+    const [salt, hash] = String(storedHash || '').split(':');
+    if (!salt || !hash || !/^[a-f0-9]{128}$/i.test(hash)) return false;
+    const derived = crypto.scryptSync(password, salt, 64).toString('hex');
+    return crypto.timingSafeEqual(Buffer.from(hash, 'hex'), Buffer.from(derived, 'hex'));
+  } catch {
+    return false;
+  }
+}
+
+async function sendAuthNotification(event, user) {
+  if (!transporter || !authNotificationRecipient) {
+    console.warn(`Authentication ${event} notification skipped: SMTP recipient is not configured.`);
+    return;
+  }
+  const timestamp = new Date().toISOString();
+  const isSignup = event === 'SIGNUP';
+  await transporter.sendMail({
+    from: smtpUser,
+    to: authNotificationRecipient,
+    subject: `[INKNOVIO TECH] ${event} notification`,
+    text: [
+      `Authentication event: ${event}`,
+      '',
+      isSignup ? 'A new user registered.' : 'A user logged in.',
+      `Name: ${isSignup ? user.name : 'Existing user'}`,
+      `Email: ${user.email}`,
+      `Date/time (UTC): ${timestamp}`
+    ].join('\n')
+  });
+  console.log(`Authentication ${event} notification sent to the configured admin recipient.`);
 }
 
 function requireAuth(request, response, next) {
@@ -151,6 +180,11 @@ app.post('/api/auth/signup', async (request, response) => {
     });
     userId = Number(result.lastInsertRowid);
     request.session = { userId, user: { id: userId, name, email } };
+    try {
+      await sendAuthNotification('SIGNUP', { name, email });
+    } catch (error) {
+      console.error('Signup notification failed:', error.code || error.message);
+    }
     return response.status(201).json({ user: request.session.user });
   } catch (error) {
     if (userId) await database.execute({ sql: 'DELETE FROM users WHERE id = ?', args: [userId] });
@@ -169,6 +203,11 @@ app.post('/api/auth/login', async (request, response) => {
   const user = result.rows[0];
   if (!user || !password || !verifyPassword(password, user.password_hash)) return response.status(401).json({ error: 'Incorrect email or password.' });
   request.session = { userId: Number(user.id), user: { id: Number(user.id), name: user.name, email: user.email } };
+  try {
+    await sendAuthNotification('LOGIN', { email: user.email });
+  } catch (error) {
+    console.error('Login notification failed:', error.code || error.message);
+  }
   return response.json({ user: request.session.user });
 });
 
