@@ -287,7 +287,7 @@
 
   const authLinks = document.querySelectorAll('a[data-path="login"], a[data-path="sign-up"]');
   const authStyles = document.createElement('style');
-  authStyles.textContent = '.authenticated-user{color:#00f0d0!important;font-weight:700;text-shadow:0 0 14px rgba(0,240,208,.28)}.auth-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(5,8,16,.78);backdrop-filter:blur(12px)}.auth-modal{width:min(100%,460px);padding:28px;border:1px solid rgba(0,240,208,.28);border-radius:16px;background:#1c1f28;color:#e0e2ee;box-shadow:0 24px 80px rgba(0,0,0,.55)}.auth-modal h2{margin:0;color:#e0e2ee}.auth-modal label{display:grid;gap:6px;color:#b9cac4;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}.auth-modal input{width:100%;padding:13px 15px;border:1px solid #3a4a46;border-radius:8px;background:#0b0e16;color:#e0e2ee;font:inherit}.auth-modal input:focus{outline:2px solid rgba(0,240,208,.45);outline-offset:1px;border-color:#00f0d0}.auth-modal form{display:grid;gap:14px;margin-top:20px}.auth-error{min-height:20px;color:#ffb4ab;font-size:13px}.auth-success{color:#00f0d0;font-size:13px}.auth-close{float:right;background:transparent;color:#b9cac4;padding:4px 8px;font-size:20px}.auth-close:hover{color:#00f0d0}.auth-submit{width:100%;padding:13px 16px;border:0;border-radius:999px;background:#00f0d0;color:#00382f;font-weight:700;cursor:pointer;box-shadow:0 0 20px rgba(0,240,208,.35);transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease}.auth-submit:hover:not(:disabled){background:#30fddd;box-shadow:0 0 28px rgba(0,240,208,.55);transform:translateY(-1px)}.auth-submit:disabled{opacity:.8;cursor:wait}.password-wrap{position:relative}.password-wrap input{padding-right:52px}.password-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);padding:7px;background:transparent;color:#84948f}.password-toggle:hover{color:#00f0d0}.account-record{border:1px solid rgba(0,240,208,.18);background:rgba(28,31,40,.78);border-radius:12px;padding:18px}.account-status{color:#00f0d0;text-transform:capitalize}.account-hero{position:relative;overflow:hidden;border:1px solid rgba(0,240,208,.22);border-radius:20px;padding:clamp(24px,5vw,56px);background:linear-gradient(135deg,rgba(38,42,51,.98),rgba(16,19,28,.96));box-shadow:0 24px 70px rgba(0,0,0,.28)}.account-hero::after{content:"";position:absolute;right:-90px;top:-120px;width:300px;height:300px;border:1px solid rgba(0,240,208,.16);border-radius:50%;box-shadow:0 0 0 28px rgba(0,240,208,.035),0 0 0 56px rgba(0,240,208,.025);pointer-events:none}.account-welcome{position:relative;z-index:1;max-width:760px;font-size:clamp(2.2rem,5vw,4.8rem);line-height:1.02;letter-spacing:-.02em}.account-welcome-name{color:#00f0d0}.account-intro{position:relative;z-index:1;max-width:620px}.account-email{overflow-wrap:anywhere}';
+  authStyles.textContent = '.authenticated-user{color:#00f0d0!important;font-weight:700;text-shadow:0 0 14px rgba(0,240,208,.28)}.auth-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(5,8,16,.78);backdrop-filter:blur(12px)}.auth-modal{width:min(100%,460px);padding:28px;border:1px solid rgba(0,240,208,.28);border-radius:16px;background:#1c1f28;color:#e0e2ee;box-shadow:0 24px 80px rgba(0,0,0,.55)}.auth-modal h2{margin:0;color:#e0e2ee}.auth-modal label{display:grid;gap:6px;color:#b9cac4;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}.auth-modal input{width:100%;padding:13px 15px;border:1px solid #3a4a46;border-radius:8px;background:#0b0e16;color:#e0e2ee;font:inherit}.auth-modal input:focus{outline:2px solid rgba(0,240,208,.45);outline-offset:1px;border-color:#00f0d0}.auth-modal form{display:grid;gap:14px;margin-top:20px}.auth-error{min-height:20px;color:#ffb4ab;font-size:13px}.auth-success{color:#00f0d0;font-size:13px}.auth-close{float:right;background:transparent;color:#b9cac4;padding:4px 8px;font-size:20px}.auth-close:hover{color:#00f0d0}.auth-submit{width:100%;padding:13px 16px;border:0;border-radius:999px;background:#00f0d0;color:#00382f;font-weight:700;cursor:pointer;box-shadow:0 0 20px rgba(0,240,208,.35);transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease}.auth-submit:hover:not(:disabled){background:#30fddd;box-shadow:0 0 28px rgba(0,240,208,.55);transform:translateY(-1px)}.auth-submit:disabled{opacity:.8;cursor:wait}.password-wrap{position:relative}.password-wrap input{padding-right:52px}.password-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);padding:7px;background:transparent;color:#84948f}.password-toggle:hover{color:#00f0d0}.auth-link{padding:0;background:transparent;color:#00f0d0;font-size:13px;text-align:right;cursor:pointer}.auth-link:hover{text-decoration:underline}.auth-actions{display:flex;justify-content:space-between;align-items:center;gap:12px}.auth-countdown{color:#b9cac4;font-size:13px}.auth-hint{color:#b9cac4;font-size:13px;line-height:1.5}.password-strength{color:#b9cac4;font-size:12px}.account-record{border:1px solid rgba(0,240,208,.18);background:rgba(28,31,40,.78);border-radius:12px;padding:18px}.account-status{color:#00f0d0;text-transform:capitalize}.account-hero{position:relative;overflow:hidden;border:1px solid rgba(0,240,208,.22);border-radius:20px;padding:clamp(24px,5vw,56px);background:linear-gradient(135deg,rgba(38,42,51,.98),rgba(16,19,28,.96));box-shadow:0 24px 70px rgba(0,0,0,.28)}.account-hero::after{content:"";position:absolute;right:-90px;top:-120px;width:300px;height:300px;border:1px solid rgba(0,240,208,.16);border-radius:50%;box-shadow:0 0 0 28px rgba(0,240,208,.035),0 0 0 56px rgba(0,240,208,.025);pointer-events:none}.account-welcome{position:relative;z-index:1;max-width:760px;font-size:clamp(2.2rem,5vw,4.8rem);line-height:1.02;letter-spacing:-.02em}.account-welcome-name{color:#00f0d0}.account-intro{position:relative;z-index:1;max-width:620px}.account-email{overflow-wrap:anywhere}';
   document.head.append(authStyles);
 
   function updateAuthenticatedNav(user) {
@@ -336,18 +336,142 @@
     projects.innerHTML = account.projects.length ? account.projects.map((project) => `<div class="flex items-center justify-between gap-space-md account-record"><div><strong class="text-on-surface">${project.name}</strong><p class="font-body-sm text-on-surface-variant">${project.service}</p></div><span class="account-status font-label-sm">${project.status}</span></div>`).join('') : '<p class="font-body-md text-on-surface-variant">No previous projects or activity yet. Your first project will appear here after you get started.</p>';
   }
 
+  async function requestAuthApi(path, options) {
+    let response;
+    try {
+      response = await fetch(path, options);
+    } catch {
+      throw new Error('Unable to connect to the authentication server. Please try again.');
+    }
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || 'The authentication service is temporarily unavailable.');
+    return result;
+  }
+
+  function openPasswordRecovery() {
+    document.querySelector('.auth-backdrop')?.remove();
+    const backdrop = document.createElement('div');
+    backdrop.className = 'auth-backdrop';
+    backdrop.innerHTML = '<section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="auth-close" type="button" aria-label="Close">&times;</button><div class="auth-body"></div></section>';
+    document.body.append(backdrop);
+    const body = backdrop.querySelector('.auth-body');
+    let countdownTimer;
+    const close = () => { clearInterval(countdownTimer); backdrop.remove(); };
+    backdrop.querySelector('.auth-close').addEventListener('click', close);
+    backdrop.addEventListener('click', (event) => { if (event.target === backdrop) close(); });
+    const setBusy = (button, busyText, busy) => { if (!button) return; if (busy) { button.dataset.originalText = button.textContent; button.textContent = busyText; } else { button.textContent = button.dataset.originalText || button.textContent; } button.disabled = busy; };
+    const wirePasswordToggles = () => backdrop.querySelectorAll('.password-toggle').forEach((toggle) => toggle.addEventListener('click', () => {
+      const input = toggle.previousElementSibling;
+      const visible = input.type === 'text';
+      input.type = visible ? 'password' : 'text';
+      toggle.setAttribute('aria-label', `${visible ? 'Show' : 'Hide'} password`);
+    }));
+    const renderIdentifier = () => {
+      clearInterval(countdownTimer);
+      body.innerHTML = '<span class="font-label-sm text-primary uppercase tracking-widest">Account recovery</span><h2 id="auth-title" class="font-headline-lg text-on-surface">Forgot Password?</h2><p class="font-body-sm text-on-surface-variant">Enter your registered email address or mobile number. We will send a verification code if an account matches.</p><form novalidate><div class="auth-error" role="alert"></div><label>Email or phone number<input name="identifier" autocomplete="email tel" required placeholder="you@example.com or +1 555 123 4567"></label><button class="auth-submit" type="submit">Send verification code</button></form>';
+      const form = body.querySelector('form');
+      const error = body.querySelector('.auth-error');
+      form.querySelector('input').focus();
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        error.textContent = '';
+        const button = form.querySelector('.auth-submit');
+        setBusy(button, 'Sending code...', true);
+        try {
+          const result = await requestAuthApi('/api/auth/password-reset/request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ identifier: form.identifier.value }) });
+          renderVerify(result.challengeId, result.expiresAt);
+        } catch (recoveryError) {
+          error.textContent = recoveryError.message;
+          setBusy(button, '', false);
+        }
+      });
+    };
+    const renderVerify = (challengeId, expiresAt) => {
+      clearInterval(countdownTimer);
+      body.innerHTML = '<span class="font-label-sm text-primary uppercase tracking-widest">Verification</span><h2 id="auth-title" class="font-headline-lg text-on-surface">Enter your code</h2><p class="auth-hint">Enter the six-digit verification code sent to your registered email or phone. Your code expires in 5 minutes.</p><form novalidate><div class="auth-error" role="alert"></div><label>Verification code<input name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required></label><div class="auth-actions"><span class="auth-countdown" aria-live="polite"></span><button class="auth-link" type="button" data-resend>Resend code</button></div><button class="auth-submit" type="submit">Verify code</button></form>';
+      const form = body.querySelector('form');
+      const error = body.querySelector('.auth-error');
+      const countdown = body.querySelector('.auth-countdown');
+      const resend = body.querySelector('[data-resend]');
+      let expiresAtMs = Number(expiresAt);
+      let resendAvailableAt = Date.now() + 60 * 1000;
+      const updateCountdown = () => {
+        const secondsLeft = Math.max(0, Math.ceil((expiresAtMs - Date.now()) / 1000));
+        const minutes = Math.floor(secondsLeft / 60);
+        const seconds = String(secondsLeft % 60).padStart(2, '0');
+        countdown.textContent = secondsLeft ? `Code expires in ${minutes}:${seconds}` : 'Code expired. Request a new code.';
+        resend.disabled = Date.now() < resendAvailableAt;
+      };
+      updateCountdown();
+      countdownTimer = setInterval(updateCountdown, 1000);
+      form.querySelector('input').focus();
+      resend.addEventListener('click', async () => {
+        error.textContent = '';
+        setBusy(resend, 'Sending...', true);
+        try {
+          const result = await requestAuthApi('/api/auth/password-reset/resend', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ challengeId }) });
+          expiresAtMs = Number(result.expiresAt);
+          resendAvailableAt = Date.now() + 60 * 1000;
+          updateCountdown();
+        } catch (resendError) {
+          error.textContent = resendError.message;
+        } finally {
+          setBusy(resend, '', false);
+        }
+      });
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        error.textContent = '';
+        const button = form.querySelector('.auth-submit');
+        setBusy(button, 'Verifying...', true);
+        try {
+          await requestAuthApi('/api/auth/password-reset/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ challengeId, code: form.code.value }) });
+          renderReset();
+        } catch (verifyError) {
+          error.textContent = verifyError.message;
+          setBusy(button, '', false);
+        }
+      });
+    };
+    const renderReset = () => {
+      clearInterval(countdownTimer);
+      body.innerHTML = '<span class="font-label-sm text-primary uppercase tracking-widest">New credentials</span><h2 id="auth-title" class="font-headline-lg text-on-surface">Create New Password</h2><p class="font-body-sm text-on-surface-variant">Use 8-72 characters with uppercase, lowercase, number, and symbol.</p><form novalidate><div class="auth-error" role="alert"></div><label>New password<span class="password-wrap"><input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="72"><button class="password-toggle" type="button" aria-label="Show password">&#128065;</button></span></label><label>Confirm new password<span class="password-wrap"><input name="confirmPassword" type="password" autocomplete="new-password" required minlength="8" maxlength="72"><button class="password-toggle" type="button" aria-label="Show password">&#128065;</button></span></label><div class="password-strength">Password must include uppercase, lowercase, number, and symbol.</div><button class="auth-submit" type="submit">Reset password</button></form>';
+      wirePasswordToggles();
+      const form = body.querySelector('form');
+      const error = body.querySelector('.auth-error');
+      form.querySelector('input').focus();
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        error.textContent = '';
+        const button = form.querySelector('.auth-submit');
+        setBusy(button, 'Updating password...', true);
+        try {
+          await requestAuthApi('/api/auth/password-reset/reset', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: form.password.value, confirmPassword: form.confirmPassword.value }) });
+          clearInterval(countdownTimer);
+          body.innerHTML = '<span class="font-label-sm text-primary uppercase tracking-widest">Complete</span><h2 id="auth-title" class="font-headline-lg text-on-surface">Password updated successfully.</h2><p class="font-body-sm text-on-surface-variant">Your password has been changed. You can now log in with your new password.</p><button class="auth-submit" type="button" data-continue-login>Continue to Login</button>';
+          body.querySelector('[data-continue-login]').addEventListener('click', () => { backdrop.remove(); openAuth('login'); });
+        } catch (resetError) {
+          error.textContent = resetError.message;
+          setBusy(button, '', false);
+        }
+      });
+    };
+    renderIdentifier();
+  }
+
   function openAuth(mode) {
     document.querySelector('.auth-backdrop')?.remove();
     const signup = mode === 'signup';
     const backdrop = document.createElement('div');
     backdrop.className = 'auth-backdrop';
     const passwordField = (name, autocomplete, label) => `<label>${label}<span class="password-wrap"><input name="${name}" type="password" autocomplete="${autocomplete}" required${signup ? ' minlength="8" maxlength="72"' : ''}><button class="password-toggle" type="button" aria-label="Show ${label.toLowerCase()}">&#128065;</button></span></label>`;
-    backdrop.innerHTML = `<section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="auth-close" type="button" aria-label="Close">&times;</button><span class="font-label-sm text-primary uppercase tracking-widest">${signup ? 'Create your account' : 'Welcome back'}</span><h2 id="auth-title" class="font-headline-lg text-on-surface">${signup ? 'Join INKNOVIO TECH' : 'Log in to your workspace'}</h2><p class="font-body-sm text-on-surface-variant">${signup ? 'Create an account to manage your creative projects.' : 'Use your registered account credentials.'}</p><form novalidate><div class="auth-error" role="alert"></div>${signup ? '<label>Full name<input name="name" autocomplete="name" required minlength="2" maxlength="80"></label>' : ''}<label>Email address<input name="email" type="email" autocomplete="email" required></label>${passwordField('password', signup ? 'new-password' : 'current-password', 'Password')}${signup ? passwordField('confirmPassword', 'new-password', 'Confirm password') : ''}<button class="auth-submit" type="submit">${signup ? 'Create account' : 'Log in'}</button></form></section>`;
+    backdrop.innerHTML = `<section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="auth-close" type="button" aria-label="Close">&times;</button><span class="font-label-sm text-primary uppercase tracking-widest">${signup ? 'Create your account' : 'Welcome back'}</span><h2 id="auth-title" class="font-headline-lg text-on-surface">${signup ? 'Join INKNOVIO TECH' : 'Log in to your workspace'}</h2><p class="font-body-sm text-on-surface-variant">${signup ? 'Create an account to manage your creative projects.' : 'Use your registered account credentials.'}</p><form novalidate><div class="auth-error" role="alert"></div>${signup ? '<label>Full name<input name="name" autocomplete="name" required minlength="2" maxlength="80"></label>' : ''}<label>Email address<input name="email" type="email" autocomplete="email" required></label>${signup ? '<label>Mobile number <span class="font-body-sm text-on-surface-variant">(optional, international format)</span><input name="phone" type="tel" autocomplete="tel" placeholder="+1 555 123 4567"></label>' : ''}${passwordField('password', signup ? 'new-password' : 'current-password', 'Password')}${signup ? passwordField('confirmPassword', 'new-password', 'Confirm password') : '<button class="auth-link" type="button" data-forgot-password>Forgot Password?</button>'}<button class="auth-submit" type="submit">${signup ? 'Create account' : 'Log in'}</button></form></section>`;
     document.body.append(backdrop);
     const formElement = backdrop.querySelector('form');
     const error = backdrop.querySelector('.auth-error');
     backdrop.querySelector('.auth-close').addEventListener('click', () => backdrop.remove());
     backdrop.addEventListener('click', (event) => { if (event.target === backdrop) backdrop.remove(); });
+    backdrop.querySelector('[data-forgot-password]')?.addEventListener('click', openPasswordRecovery);
     backdrop.querySelectorAll('.password-toggle').forEach((toggle) => {
       toggle.addEventListener('click', () => {
         const input = toggle.previousElementSibling;
