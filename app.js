@@ -68,6 +68,8 @@
       const mobileMenu = document.createElement('div');
       mobileMenu.id = 'mobile-site-menu';
       mobileMenu.className = 'mobile-site-menu hidden xl:hidden';
+      const mobileAuthLinks = document.createElement('div');
+      mobileAuthLinks.className = 'mobile-auth-links';
       ['home', 'services', 'work', 'about', 'facts', 'contact', 'login', 'sign-up'].forEach((path) => {
         const source = headerInner.querySelector(`a[data-path="${path}"]`);
         if (!source) return;
@@ -75,10 +77,23 @@
         link.classList.remove('hidden', 'sm:inline-flex');
         link.className += ' mobile-site-menu-link';
         if (path === 'login' || path === 'sign-up') {
-          link.addEventListener('click', (event) => {
+          link.dataset.mobileAuth = 'true';
+          link.classList.add('mobile-auth-link');
+          link.addEventListener('click', async (event) => {
             event.preventDefault();
+            if (path === 'login' && link.dataset.authenticated === 'true') {
+              document.getElementById('account')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              return;
+            }
+            if (path === 'sign-up' && link.dataset.action === 'logout') {
+              await fetch('/api/auth/logout', { method: 'POST' });
+              document.getElementById('account')?.remove();
+              updateAuthenticatedNav(null);
+              return;
+            }
             openAuth(path === 'sign-up' ? 'signup' : 'login');
           });
+          mobileAuthLinks.append(link);
         } else {
           link.addEventListener('click', (event) => {
             const target = document.getElementById(link.getAttribute('href').slice(1));
@@ -86,9 +101,10 @@
             event.preventDefault();
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
+          mobileMenu.append(link);
         }
-        mobileMenu.append(link);
       });
+      mobileMenu.append(mobileAuthLinks);
       headerInner.append(mobileMenuToggle);
       headerInner.parentElement.append(mobileMenu);
 
@@ -118,7 +134,7 @@
       });
     }
     const responsiveStyles = document.createElement('style');
-    responsiveStyles.textContent = '.mobile-menu-toggle{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:2.75rem;height:2.75rem;border:1px solid rgba(132,148,143,.45);border-radius:.75rem;background:rgba(28,31,40,.8);color:#e0e2ee;touch-action:manipulation}.mobile-menu-toggle:hover{border-color:#00f0d0;color:#00f0d0}.mobile-site-menu{position:absolute;top:100%;left:0;right:0;z-index:1;display:grid;gap:.25rem;padding:.75rem 1rem 1rem;border-top:1px solid rgba(132,148,143,.2);background:rgba(16,19,28,.98);box-shadow:0 18px 30px rgba(0,0,0,.28)}.mobile-site-menu.hidden{display:none}.mobile-site-menu-link{display:block;padding:.75rem 1rem;border-radius:.5rem;color:#b9cac4;font-size:.95rem}.mobile-site-menu-link:hover,.mobile-site-menu-link:focus{background:#262a33;color:#00f0d0}.mobile-site-menu-link[data-path="sign-up"]{background:#00f0d0;color:#00382f;text-align:center;font-weight:700}@media(max-width:639px){.brand-logo-header{width:160px;height:60px}.mobile-menu-toggle{margin-left:auto}header > div > div:last-child{display:none}}@media(max-width:359px){.brand-logo-header{width:140px;height:54px}}@media(min-width:640px) and (max-width:1279px){.mobile-site-menu{left:1rem;right:1rem;border:1px solid rgba(132,148,143,.2);border-radius:.75rem}}html,body{overflow-x:hidden}';
+    responsiveStyles.textContent = '.mobile-menu-toggle{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:2.75rem;height:2.75rem;border:1px solid rgba(132,148,143,.45);border-radius:.75rem;background:rgba(28,31,40,.8);color:#e0e2ee;touch-action:manipulation}.mobile-menu-toggle:hover{border-color:#00f0d0;color:#00f0d0}.mobile-site-menu{position:absolute;top:100%;left:0;right:0;z-index:1;display:grid;gap:.25rem;padding:.75rem 1rem 1rem;border-top:1px solid rgba(132,148,143,.2);background:rgba(16,19,28,.98);box-shadow:0 18px 30px rgba(0,0,0,.28)}.mobile-site-menu.hidden{display:none}.mobile-site-menu-link{display:block;padding:.75rem 1rem;border-radius:.5rem;color:#b9cac4;font-size:.95rem}.mobile-site-menu-link:hover,.mobile-site-menu-link:focus{background:#262a33;color:#00f0d0}.mobile-auth-links{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;margin-top:.5rem;padding-top:.75rem;border-top:1px solid rgba(132,148,143,.2)}.mobile-auth-link{display:block!important;margin:0;text-align:center}.mobile-auth-link[data-path="login"]{background:#262a33;color:#e0e2ee}.mobile-auth-link[data-path="sign-up"]{background:#00f0d0;color:#00382f;font-weight:700}.account-section-top{margin-top:68px;padding-top:1rem;padding-bottom:1rem}.account-section-top .account-hero{margin-bottom:1rem;padding:1.25rem;background:rgba(28,31,40,.82);border:1px solid rgba(0,240,208,.18);border-radius:1rem;box-shadow:0 14px 36px rgba(0,0,0,.2)}.account-section-top .account-welcome{font-size:clamp(1.5rem,4vw,2.6rem);line-height:1.1}.account-section-top .account-email{margin-top:.5rem;font-size:.95rem;color:#b9cac4}.account-section-top .account-intro{margin-top:.5rem;font-size:.9rem;line-height:1.5}.account-section-top .account-record{padding:1rem}@media(min-width:768px){.account-section-top{margin-top:72px}}@media(min-width:1024px){.account-section-top{margin-top:84px}}@media(max-width:639px){.brand-logo-header{width:160px;height:60px}.mobile-menu-toggle{margin-left:auto}header > div > div:last-child{display:none}}@media(max-width:359px){.brand-logo-header{width:140px;height:54px}}@media(min-width:640px) and (max-width:1279px){.mobile-site-menu{left:1rem;right:1rem;border:1px solid rgba(132,148,143,.2);border-radius:.75rem}}html,body{overflow-x:hidden}';
     document.head.append(responsiveStyles);
   }
   if (nicheStructure) {
@@ -365,25 +381,26 @@
     });
   }
 
-  const authLinks = document.querySelectorAll('a[data-path="login"], a[data-path="sign-up"]');
+  const authLinks = document.querySelectorAll('a[data-path="login"]:not([data-mobile-auth]), a[data-path="sign-up"]:not([data-mobile-auth])');
   const authStyles = document.createElement('style');
   authStyles.textContent = '.authenticated-user{color:#00f0d0!important;font-weight:700;text-shadow:0 0 14px rgba(0,240,208,.28)}.auth-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(5,8,16,.78);backdrop-filter:blur(12px)}.auth-modal{width:min(100%,460px);padding:28px;border:1px solid rgba(0,240,208,.28);border-radius:16px;background:#1c1f28;color:#e0e2ee;box-shadow:0 24px 80px rgba(0,0,0,.55)}.auth-modal h2{margin:0;color:#e0e2ee}.auth-modal label{display:grid;gap:6px;color:#b9cac4;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}.auth-modal input{width:100%;padding:13px 15px;border:1px solid #3a4a46;border-radius:8px;background:#0b0e16;color:#e0e2ee;font:inherit}.auth-modal input:focus{outline:2px solid rgba(0,240,208,.45);outline-offset:1px;border-color:#00f0d0}.auth-modal form{display:grid;gap:14px;margin-top:20px}.auth-error{min-height:20px;color:#ffb4ab;font-size:13px}.auth-success{color:#00f0d0;font-size:13px}.auth-close{float:right;background:transparent;color:#b9cac4;padding:4px 8px;font-size:20px}.auth-close:hover{color:#00f0d0}.auth-submit{width:100%;padding:13px 16px;border:0;border-radius:999px;background:#00f0d0;color:#00382f;font-weight:700;cursor:pointer;box-shadow:0 0 20px rgba(0,240,208,.35);transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease}.auth-submit:hover:not(:disabled){background:#30fddd;box-shadow:0 0 28px rgba(0,240,208,.55);transform:translateY(-1px)}.auth-submit:disabled{opacity:.8;cursor:wait}.password-wrap{position:relative}.password-wrap input{padding-right:52px}.password-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);padding:7px;background:transparent;color:#84948f}.password-toggle:hover{color:#00f0d0}.auth-link{padding:0;background:transparent;color:#00f0d0;font-size:13px;text-align:right;cursor:pointer}.auth-link:hover{text-decoration:underline}.auth-actions{display:flex;justify-content:space-between;align-items:center;gap:12px}.auth-countdown{color:#b9cac4;font-size:13px}.auth-hint{color:#b9cac4;font-size:13px;line-height:1.5}.password-strength{color:#b9cac4;font-size:12px}.account-record{border:1px solid rgba(0,240,208,.18);background:rgba(28,31,40,.78);border-radius:12px;padding:18px}.account-status{color:#00f0d0;text-transform:capitalize}.account-hero{position:relative;overflow:hidden;border:1px solid rgba(0,240,208,.22);border-radius:20px;padding:clamp(24px,5vw,56px);background:linear-gradient(135deg,rgba(38,42,51,.98),rgba(16,19,28,.96));box-shadow:0 24px 70px rgba(0,0,0,.28)}.account-hero::after{content:"";position:absolute;right:-90px;top:-120px;width:300px;height:300px;border:1px solid rgba(0,240,208,.16);border-radius:50%;box-shadow:0 0 0 28px rgba(0,240,208,.035),0 0 0 56px rgba(0,240,208,.025);pointer-events:none}.account-welcome{position:relative;z-index:1;max-width:760px;font-size:clamp(2.2rem,5vw,4.8rem);line-height:1.02;letter-spacing:-.02em}.account-welcome-name{color:#00f0d0}.account-intro{position:relative;z-index:1;max-width:620px}.account-email{overflow-wrap:anywhere}';
   document.head.append(authStyles);
 
   function updateAuthenticatedNav(user) {
-    const loginLink = document.querySelector('a[data-path="login"]');
-    const signupLink = document.querySelector('a[data-path="sign-up"]');
-    if (!loginLink || !signupLink) return;
-    loginLink.textContent = user ? `Welcome ${user.name}` : 'Login';
-    loginLink.classList.toggle('authenticated-user', Boolean(user));
-    loginLink.title = user ? `Signed in as ${user.name}` : '';
-    loginLink.href = user ? '#account' : '#';
-    loginLink.dataset.authenticated = user ? 'true' : 'false';
-    signupLink.textContent = user ? 'Log out' : 'Sign Up';
-    signupLink.href = '#';
-    signupLink.dataset.authenticated = user ? 'true' : 'false';
-    signupLink.dataset.action = user ? 'logout' : 'signup';
-    signupLink.classList.remove('hidden');
+    document.querySelectorAll('a[data-path="login"]').forEach((loginLink) => {
+      loginLink.textContent = user ? `Welcome ${user.name}` : 'Login';
+      loginLink.classList.toggle('authenticated-user', Boolean(user));
+      loginLink.title = user ? `Signed in as ${user.name}` : '';
+      loginLink.href = user ? '#account' : '#';
+      loginLink.dataset.authenticated = user ? 'true' : 'false';
+    });
+    document.querySelectorAll('a[data-path="sign-up"]').forEach((signupLink) => {
+      signupLink.textContent = user ? 'Log out' : 'Sign Up';
+      signupLink.href = '#';
+      signupLink.dataset.authenticated = user ? 'true' : 'false';
+      signupLink.dataset.action = user ? 'logout' : 'signup';
+      signupLink.classList.remove('hidden');
+    });
   }
 
   function maskEmail(email) {
@@ -395,14 +412,16 @@
 
   async function loadAccount(user) {
     updateAuthenticatedNav(user);
-    const target = document.getElementById('get-started');
+    const target = document.querySelector('main section');
     if (!target) return;
     document.getElementById('account')?.remove();
     const accountSection = document.createElement('section');
     accountSection.id = 'account';
-    accountSection.className = 'py-space-3xl lg:py-space-4xl bg-surface relative';
+    accountSection.className = 'account-section-top py-space-lg bg-surface relative';
     accountSection.innerHTML = '<div class="max-w-[1240px] mx-auto px-gutter-desktop"><div class="account-hero mb-space-xl"><span class="relative z-10 font-label-sm text-label-sm text-primary uppercase tracking-widest">YOUR CLIENT PORTAL</span><h2 class="account-welcome text-on-surface mt-space-md">Welcome back, <span class="account-welcome-name"></span>.</h2><p class="account-intro font-body-lg text-body-lg text-on-surface-variant mt-space-md">You are securely signed in to your personal INKNOVIO TECH workspace. Your account and project activity are ready whenever you are.</p></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg"><div class="account-record lg:col-span-1"><span class="font-label-sm text-primary uppercase tracking-wider">Account</span><h3 class="font-headline-sm text-on-surface mt-space-sm account-email"></h3><p class="font-body-sm text-on-surface-variant mt-space-xs">Member since <span class="account-date"></span></p></div><div class="account-record lg:col-span-2"><div class="flex items-center justify-between gap-space-md"><div><span class="font-label-sm text-primary uppercase tracking-wider">Client activity</span><h3 class="font-headline-sm text-on-surface mt-space-sm">Projects and requests</h3></div><span class="account-status font-label-sm"></span></div><div class="account-projects grid gap-space-sm mt-space-md"></div></div></div></div>';
     target.parentNode.insertBefore(accountSection, target);
+    const accountEmail = accountSection.querySelector('.account-email');
+    accountSection.querySelector('.account-welcome')?.insertAdjacentElement('afterend', accountEmail);
     accountSection.querySelector('.account-welcome-name').textContent = user.name;
     accountSection.querySelector('.account-email').textContent = maskEmail(user.email);
     const accountResponse = await fetch('/api/account');
