@@ -31,12 +31,24 @@
   };
   const nicheStructure = document.getElementById('niche-subcategories');
   const navigation = document.querySelector('header nav');
-  const howItWorksLink = navigation?.querySelector('a[data-path="how-it-works"]');
-  if (howItWorksLink) {
-    howItWorksLink.textContent = 'Contact Now';
-    howItWorksLink.dataset.path = 'contact';
-    howItWorksLink.href = '#get-started';
+  if (navigation) {
+    ['home', 'services', 'work', 'about', 'facts', 'contact'].forEach((path) => {
+      const link = navigation.querySelector(`a[data-path="${path}"]`);
+      if (!link) return;
+      if (path === 'contact') {
+        link.textContent = 'Contact Us';
+        link.href = '#get-started';
+      }
+      navigation.append(link);
+    });
   }
+  document.querySelectorAll('#services a[href="#work"]').forEach((link) => {
+    link.href = '#work';
+  });
+  document.querySelectorAll('a[data-path="contact"]').forEach((link) => {
+    link.textContent = 'Contact Us';
+    link.href = '#get-started';
+  });
   const footerServices = [...document.querySelectorAll('footer span')].find((item) => item.textContent.trim() === 'Creative Services');
   footerServices?.parentElement?.querySelectorAll('a[href="#"]').forEach((link) => {
     link.href = '#services';
