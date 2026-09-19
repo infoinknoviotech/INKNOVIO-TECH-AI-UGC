@@ -53,6 +53,74 @@
   footerServices?.parentElement?.querySelectorAll('a[href="#"]').forEach((link) => {
     link.href = '#work';
   });
+  if (navigation) {
+    const headerInner = navigation.parentElement;
+    const headerActions = headerInner?.lastElementChild;
+    if (headerInner && headerActions && !document.getElementById('mobile-menu-toggle')) {
+      const mobileMenuToggle = document.createElement('button');
+      mobileMenuToggle.id = 'mobile-menu-toggle';
+      mobileMenuToggle.className = 'mobile-menu-toggle xl:hidden';
+      mobileMenuToggle.type = 'button';
+      mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      mobileMenuToggle.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">menu</span>';
+
+      const mobileMenu = document.createElement('div');
+      mobileMenu.id = 'mobile-site-menu';
+      mobileMenu.className = 'mobile-site-menu hidden xl:hidden';
+      ['home', 'services', 'work', 'about', 'facts', 'contact', 'login', 'sign-up'].forEach((path) => {
+        const source = headerInner.querySelector(`a[data-path="${path}"]`);
+        if (!source) return;
+        const link = source.cloneNode(true);
+        link.classList.remove('hidden', 'sm:inline-flex');
+        link.className += ' mobile-site-menu-link';
+        if (path === 'login' || path === 'sign-up') {
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            openAuth(path === 'sign-up' ? 'signup' : 'login');
+          });
+        } else {
+          link.addEventListener('click', (event) => {
+            const target = document.getElementById(link.getAttribute('href').slice(1));
+            if (!target) return;
+            event.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+        mobileMenu.append(link);
+      });
+      headerInner.append(mobileMenuToggle);
+      headerInner.parentElement.append(mobileMenu);
+
+      const closeMobileMenu = () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+        mobileMenuToggle.querySelector('.material-symbols-outlined').textContent = 'menu';
+      };
+      mobileMenuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('hidden') === false;
+        mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+        mobileMenuToggle.querySelector('.material-symbols-outlined').textContent = isOpen ? 'close' : 'menu';
+      });
+      mobileMenu.addEventListener('click', (event) => {
+        const link = event.target.closest('a');
+        if (!link) return;
+        if (!['login', 'sign-up'].includes(link.dataset.path)) {
+          const target = document.getElementById(link.getAttribute('href').slice(1));
+          if (target) {
+            event.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+        window.setTimeout(closeMobileMenu, 0);
+      });
+    }
+    const responsiveStyles = document.createElement('style');
+    responsiveStyles.textContent = '.mobile-menu-toggle{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:2.75rem;height:2.75rem;border:1px solid rgba(132,148,143,.45);border-radius:.75rem;background:rgba(28,31,40,.8);color:#e0e2ee;touch-action:manipulation}.mobile-menu-toggle:hover{border-color:#00f0d0;color:#00f0d0}.mobile-site-menu{position:absolute;top:100%;left:0;right:0;z-index:1;display:grid;gap:.25rem;padding:.75rem 1rem 1rem;border-top:1px solid rgba(132,148,143,.2);background:rgba(16,19,28,.98);box-shadow:0 18px 30px rgba(0,0,0,.28)}.mobile-site-menu.hidden{display:none}.mobile-site-menu-link{display:block;padding:.75rem 1rem;border-radius:.5rem;color:#b9cac4;font-size:.95rem}.mobile-site-menu-link:hover,.mobile-site-menu-link:focus{background:#262a33;color:#00f0d0}.mobile-site-menu-link[data-path="sign-up"]{background:#00f0d0;color:#00382f;text-align:center;font-weight:700}@media(max-width:639px){.brand-logo-header{width:160px;height:60px}.mobile-menu-toggle{margin-left:auto}header > div > div:last-child{display:none}}@media(max-width:359px){.brand-logo-header{width:140px;height:54px}}@media(min-width:640px) and (max-width:1279px){.mobile-site-menu{left:1rem;right:1rem;border:1px solid rgba(132,148,143,.2);border-radius:.75rem}}html,body{overflow-x:hidden}';
+    document.head.append(responsiveStyles);
+  }
   if (nicheStructure) {
     const nicheSubcategoryStyles = document.createElement('style');
     nicheSubcategoryStyles.textContent = '#niche-subcategories{width:100%;min-width:0;max-width:100%}.niche-subcategory-viewport{width:100%;overflow-x:auto;overflow-y:hidden;padding:.25rem 0 .5rem}.niche-subcategory-tabs{display:grid;grid-template-columns:minmax(0,1fr) minmax(32px,1fr) minmax(0,1fr) minmax(32px,1fr) minmax(0,1fr);align-items:center;width:100%;max-width:900px;margin:0 auto}.niche-subcategory-item{display:flex;align-items:center;min-width:0}.niche-subcategory-item .subcategory-tab{position:relative;display:inline-flex;align-items:center;justify-content:center;width:100%;padding:.5rem .75rem;font-size:.875rem;line-height:1.25rem}.niche-subcategory-item .subcategory-tab::before{content:"";width:6px;height:6px;flex:0 0 auto;margin-right:.5rem;border:1px solid currentColor;border-radius:9999px;opacity:.8;transition:background-color .25s ease,box-shadow .25s ease}.niche-subcategory-item .subcategory-tab[aria-selected="true"]::before{background:#00f0d0;box-shadow:0 0 10px rgba(0,240,208,.55)}.niche-subcategory-connector{height:1px;width:100%;background:linear-gradient(90deg,rgba(0,240,208,.45),rgba(132,148,143,.35),rgba(0,240,208,.45));opacity:.7;transition:opacity .25s ease}.niche-subcategory-viewport::-webkit-scrollbar{display:none}@media (max-width:640px){.niche-subcategory-tabs{min-width:560px;margin:0}.niche-subcategory-item .subcategory-tab{padding-inline:.5rem;font-size:.8125rem}.niche-subcategory-connector{min-width:24px}}';
@@ -380,7 +448,7 @@
     }));
     const renderIdentifier = () => {
       clearInterval(countdownTimer);
-      body.innerHTML = '<span class="font-label-sm text-primary uppercase tracking-widest">Account recovery</span><h2 id="auth-title" class="font-headline-lg text-on-surface">Forgot Password?</h2><p class="font-body-sm text-on-surface-variant">Enter your registered email address or mobile number. We will send a verification code if an account matches.</p><form novalidate><div class="auth-error" role="alert"></div><label>Email or phone number<input name="identifier" autocomplete="email tel" required placeholder="you@example.com or +1 555 123 4567"></label><button class="auth-submit" type="submit">Send verification code</button></form>';
+      body.innerHTML = '<span class="font-label-sm text-primary uppercase tracking-widest">Account recovery</span><h2 id="auth-title" class="font-headline-lg text-on-surface">Forgot Password?</h2><p class="font-body-sm text-on-surface-variant">Enter your registered email address. We will send a verification code if an account matches.</p><form novalidate><div class="auth-error" role="alert"></div><label>Email<input name="identifier" type="email" autocomplete="email" required placeholder="you@example.com"></label><button class="auth-submit" type="submit">Send verification code</button></form>';
       const form = body.querySelector('form');
       const error = body.querySelector('.auth-error');
       form.querySelector('input').focus();
@@ -400,7 +468,7 @@
     };
     const renderVerify = (challengeId, expiresAt) => {
       clearInterval(countdownTimer);
-      body.innerHTML = '<span class="font-label-sm text-primary uppercase tracking-widest">Verification</span><h2 id="auth-title" class="font-headline-lg text-on-surface">Enter your code</h2><p class="auth-hint">Enter the six-digit verification code sent to your registered email or phone. Your code expires in 5 minutes.</p><form novalidate><div class="auth-error" role="alert"></div><label>Verification code<input name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required></label><div class="auth-actions"><span class="auth-countdown" aria-live="polite"></span><button class="auth-link" type="button" data-resend>Resend code</button></div><button class="auth-submit" type="submit">Verify code</button></form>';
+      body.innerHTML = '<span class="font-label-sm text-primary uppercase tracking-widest">Verification</span><h2 id="auth-title" class="font-headline-lg text-on-surface">Enter your code</h2><p class="auth-hint">Enter the six-digit verification code sent to your registered email. Your code expires in 3 minutes.</p><form novalidate><div class="auth-error" role="alert"></div><label>Verification code<input name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required></label><div class="auth-actions"><span class="auth-countdown" aria-live="polite"></span><button class="auth-link" type="button" data-resend>Resend code</button></div><button class="auth-submit" type="submit">Verify code</button></form>';
       const form = body.querySelector('form');
       const error = body.querySelector('.auth-error');
       const countdown = body.querySelector('.auth-countdown');

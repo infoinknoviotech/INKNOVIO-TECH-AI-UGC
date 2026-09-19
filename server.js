@@ -29,7 +29,7 @@ const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID?.trim();
 const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN?.trim();
 const twilioFromNumber = process.env.TWILIO_FROM_NUMBER?.trim();
 const productionDatabaseMissing = isProduction && !process.env.TURSO_DATABASE_URL;
-const OTP_EXPIRATION_SECONDS = 5 * 60;
+const OTP_EXPIRATION_SECONDS = 3 * 60;
 const OTP_RESEND_COOLDOWN_SECONDS = 60;
 
 app.use(express.json({ limit: '10mb' }));
@@ -194,7 +194,7 @@ async function sendPasswordResetCode(channel, destination, otp) {
         '',
         otp,
         '',
-        'This code expires in 5 minutes.',
+        'This code expires in 3 minutes.',
         'If you did not request a password reset, you can safely ignore this message.'
       ].join('\n')
     });
@@ -207,7 +207,7 @@ async function sendPasswordResetCode(channel, destination, otp) {
   const body = new URLSearchParams({
     To: destination,
     From: twilioFromNumber,
-    Body: `Your INKNOVIO TECH verification code is ${otp}. It expires in 5 minutes.`
+    Body: `Your INKNOVIO TECH verification code is ${otp}. It expires in 3 minutes.`
   });
   const smsResponse = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${encodeURIComponent(twilioAccountSid)}/Messages.json`, {
     method: 'POST',
@@ -257,10 +257,9 @@ app.post('/api/auth/password-reset/request', async (request, response) => {
   await userMigrationReady;
   const input = String(request.body?.identifier || '').trim();
   const email = input.toLowerCase();
-  const phone = normalizePhone(input);
-  const channel = emailPattern.test(email) ? 'email' : phone ? 'phone' : '';
-  const identifier = channel === 'email' ? email : phone;
-  if (!channel) return response.status(400).json({ error: 'Enter a valid email address or phone number in international format.' });
+  const channel = emailPattern.test(email) ? 'email' : '';
+  const identifier = email;
+  if (!channel) return response.status(400).json({ error: 'Enter a valid email address.' });
 
   const identifierHash = hashResetValue(`${channel}:${identifier}`);
   const now = Math.floor(Date.now() / 1000);
@@ -272,7 +271,7 @@ app.post('/api/auth/password-reset/request', async (request, response) => {
   if (Number(recentResult.rows[0]?.count || 0) >= 3) return response.status(429).json({ error: 'Too many requests. Please try again later.' });
 
   const userResult = await database.execute({
-    sql: channel === 'email' ? 'SELECT id, email, phone FROM users WHERE email = ?' : 'SELECT id, email, phone FROM users WHERE phone = ?',
+    sql: 'SELECT id, email, phone FROM users WHERE email = ?',
     args: [identifier]
   });
   const user = userResult.rows[0];
