@@ -86,6 +86,19 @@ app.get('/api/index.js', (request, response, next) => {
   response.sendFile(path.join(__dirname, 'app.js'));
 });
 
+app.get('/api/debug/env', (request, response) => {
+  response.json({
+    hasSmtpUser: Boolean(process.env.SMTP_USER),
+    hasSmtpPass: Boolean(process.env.SMTP_PASS),
+    smtpUser: process.env.SMTP_USER || null,
+    smtpPassLength: process.env.SMTP_PASS?.length || 0,
+    hasLeadRecipient: Boolean(process.env.LEAD_RECIPIENT),
+    hasSessionSecret: Boolean(process.env.SESSION_SECRET),
+    nodeEnv: process.env.NODE_ENV || null,
+    vercel: Boolean(process.env.VERCEL)
+  });
+});
+
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(__dirname));
