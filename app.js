@@ -51,7 +51,7 @@
   });
   const footerServices = [...document.querySelectorAll('footer span')].find((item) => item.textContent.trim() === 'Creative Services');
   footerServices?.parentElement?.querySelectorAll('a[href="#"]').forEach((link) => {
-    link.href = '#services';
+    link.href = '#work';
   });
   if (nicheStructure) {
     const nicheSubcategoryStyles = document.createElement('style');
