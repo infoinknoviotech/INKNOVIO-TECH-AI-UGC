@@ -89,7 +89,9 @@ const rootStaticFiles = [
   'code.html',
   'screen.png',
   'favicon.ico',
-  'googled744b3e4033ba80c.html'
+  'googled744b3e4033ba80c.html',
+  'sitemap.xml',
+  'robots.txt'
 ];
 
 rootStaticFiles.forEach((fileName) => {
@@ -101,6 +103,8 @@ rootStaticFiles.forEach((fileName) => {
 app.get('/api/index.js', (request, response, next) => {
   if (request.query.asset === 'app.js') return response.sendFile(path.join(__dirname, 'app.js'));
   if (request.query.asset === 'google-site-verification') return response.sendFile(path.join(__dirname, 'googled744b3e4033ba80c.html'));
+  if (request.query.asset === 'sitemap') return response.type('application/xml').sendFile(path.join(__dirname, 'sitemap.xml'));
+  if (request.query.asset === 'robots') return response.type('text/plain').sendFile(path.join(__dirname, 'robots.txt'));
   return next();
 });
 

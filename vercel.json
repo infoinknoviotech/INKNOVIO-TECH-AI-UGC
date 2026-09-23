@@ -3,6 +3,8 @@
   "rewrites": [
     { "source": "/", "destination": "/code.html" },
     { "source": "/googled744b3e4033ba80c.html", "destination": "/api/index.js?asset=google-site-verification" },
+    { "source": "/sitemap.xml", "destination": "/api/index.js?asset=sitemap" },
+    { "source": "/robots.txt", "destination": "/api/index.js?asset=robots" },
     { "source": "/app.js", "destination": "/api/index.js?asset=app.js" },
     { "source": "/api/(.*)", "destination": "/api/index.js" }
   ]
