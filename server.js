@@ -88,7 +88,8 @@ const rootStaticFiles = [
   'app.js',
   'code.html',
   'screen.png',
-  'favicon.ico'
+  'favicon.ico',
+  'googled744b3e4033ba80c.html'
 ];
 
 rootStaticFiles.forEach((fileName) => {
@@ -98,8 +99,9 @@ rootStaticFiles.forEach((fileName) => {
 });
 
 app.get('/api/index.js', (request, response, next) => {
-  if (request.query.asset !== 'app.js') return next();
-  response.sendFile(path.join(__dirname, 'app.js'));
+  if (request.query.asset === 'app.js') return response.sendFile(path.join(__dirname, 'app.js'));
+  if (request.query.asset === 'google-site-verification') return response.sendFile(path.join(__dirname, 'googled744b3e4033ba80c.html'));
+  return next();
 });
 
 app.use('/api', (request, response, next) => {
