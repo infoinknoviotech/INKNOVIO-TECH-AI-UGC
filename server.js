@@ -94,6 +94,29 @@ const rootStaticFiles = [
   'robots.txt'
 ];
 
+const organizationStructuredData = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'INKNOVIO',
+  url: 'https://inknovio.com/',
+  sameAs: [
+    'https://www.linkedin.com/company/inknoviotech/home/'
+  ]
+});
+const seoHead = [
+  '<title>AI Creative Production for DTC &amp; E-Commerce | INKNOVIO TECH</title>',
+  '<meta name="description" content="INKNOVIO creates high-converting AI UGC ad creatives for DTC and e-commerce brands, including video ads, avatars, scripts, hooks, and creative testing assets.">',
+  '<link rel="canonical" href="https://www.inknovio.com/">',
+  `<script type="application/ld+json">${organizationStructuredData}</script>`
+].join('');
+
+function sendSeoHomepage(request, response, next) {
+  fs.readFile(path.join(__dirname, 'code.html'), 'utf8', (error, html) => {
+    if (error) return next(error);
+    response.type('html').send(html.replace('<head>', `<head>${seoHead}`));
+  });
+}
+
 rootStaticFiles.forEach((fileName) => {
   app.get(`/${fileName}`, (request, response) => {
     response.sendFile(path.join(__dirname, fileName));
@@ -105,6 +128,7 @@ app.get('/api/index.js', (request, response, next) => {
   if (request.query.asset === 'google-site-verification') return response.sendFile(path.join(__dirname, 'googled744b3e4033ba80c.html'));
   if (request.query.asset === 'sitemap') return response.type('application/xml').sendFile(path.join(__dirname, 'sitemap.xml'));
   if (request.query.asset === 'robots') return response.type('text/plain').sendFile(path.join(__dirname, 'robots.txt'));
+  if (request.query.asset === 'homepage') return sendSeoHomepage(request, response, next);
   return next();
 });
 
@@ -116,7 +140,7 @@ app.use('/api', (request, response, next) => {
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(__dirname));
-app.get('/', (request, response) => response.sendFile(path.join(__dirname, 'code.html')));
+app.get('/', sendSeoHomepage);
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,72}$/;

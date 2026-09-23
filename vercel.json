@@ -1,7 +1,7 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/", "destination": "/code.html" },
+    { "source": "/", "destination": "/api/index.js?asset=homepage" },
     { "source": "/googled744b3e4033ba80c.html", "destination": "/api/index.js?asset=google-site-verification" },
     { "source": "/sitemap.xml", "destination": "/api/index.js?asset=sitemap" },
     { "source": "/robots.txt", "destination": "/api/index.js?asset=robots" },
