@@ -32,13 +32,23 @@
   const nicheStructure = document.getElementById('niche-subcategories');
   const navigation = document.querySelector('header nav');
   if (navigation) {
-    ['home', 'services', 'work', 'about', 'facts', 'contact'].forEach((path) => {
+    navigation.querySelector('a[data-path="about"]')?.remove();
+    if (!navigation.querySelector('a[data-path="packages"]')) {
+      const packagesLink = document.createElement('a');
+      packagesLink.className = 'font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors';
+      packagesLink.dataset.path = 'packages';
+      packagesLink.href = '#packages';
+      packagesLink.textContent = 'Packages';
+      navigation.append(packagesLink);
+    }
+    ['home', 'services', 'work', 'packages', 'facts', 'contact'].forEach((path) => {
       const link = navigation.querySelector(`a[data-path="${path}"]`);
       if (!link) return;
       if (path === 'contact') {
         link.textContent = 'Contact Us';
         link.href = '#get-started';
       }
+      if (path === 'facts') link.textContent = 'Hacks';
       navigation.append(link);
     });
   }
@@ -70,7 +80,7 @@
       mobileMenu.className = 'mobile-site-menu hidden xl:hidden';
       const mobileAuthLinks = document.createElement('div');
       mobileAuthLinks.className = 'mobile-auth-links';
-      ['home', 'services', 'work', 'about', 'facts', 'contact', 'login', 'sign-up'].forEach((path) => {
+      ['home', 'services', 'work', 'packages', 'facts', 'contact', 'login', 'sign-up'].forEach((path) => {
         const source = headerInner.querySelector(`a[data-path="${path}"]`);
         if (!source) return;
         const link = source.cloneNode(true);
@@ -150,6 +160,11 @@
   const videoModalPlayer = document.getElementById('video-modal-player');
   const videoModalSource = document.getElementById('video-modal-source');
   const closeVideoModal = document.getElementById('close-video-modal');
+  document.querySelectorAll('video:not(#video-modal-player)').forEach((video) => {
+    video.removeAttribute('muted');
+    video.muted = false;
+    if (video.closest('[data-video-container^="portfolio-"]')) video.preload = 'none';
+  });
   const portfolioSliderStyles = document.createElement('style');
   portfolioSliderStyles.textContent = '.portfolio-slider{position:relative;overflow:hidden}.portfolio-slider-track{display:flex;gap:1.5rem;transition:transform .35s ease;touch-action:pan-y;user-select:none}.portfolio-card-shell{flex:0 0 calc((100% - (var(--slides-per-view) - 1) * 1.5rem) / var(--slides-per-view));max-width:calc((100% - (var(--slides-per-view) - 1) * 1.5rem) / var(--slides-per-view));}.portfolio-slider-control{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:9999px;background:rgba(28,31,40,.9);border:1px solid rgba(0,240,208,.25);color:#e0e2ee;transition:all .2s ease}.portfolio-slider-control:hover{background:rgba(0,240,208,.12);border-color:rgba(0,240,208,.5);transform:translateY(-1px)}.portfolio-slider-control:disabled{opacity:.35;cursor:not-allowed}.portfolio-slider-control:disabled:hover{transform:none}.video-modal-open{overflow:hidden}.video-lightbox{opacity:0;transition:opacity .2s ease}.video-lightbox.flex{opacity:1}.video-lightbox-panel{transform:translateY(12px) scale(.98);opacity:0;transition:transform .25s ease,opacity .25s ease}.video-lightbox.flex .video-lightbox-panel{transform:translateY(0) scale(1);opacity:1}@media (max-width:768px){.portfolio-card-shell{flex-basis:100%;max-width:100%}}';
   document.head.append(portfolioSliderStyles);
@@ -158,6 +173,20 @@
   document.querySelectorAll('#fashion-apparel .portfolio-card-shell, #fitness .portfolio-card-shell').forEach((card) => {
     if (allTrack) allTrack.append(card);
   });
+  if (allTrack) {
+    const featuredAllOrder = ['portfolio-fashion-1', 'portfolio-beauty-3', 'portfolio-fitness-2'];
+    const dessertCard = allTrack.querySelector('[data-video-container="portfolio-beauty-1"]');
+    dessertCard?.setAttribute('data-exclude-from-all', 'true');
+    dessertCard?.classList.add('hidden');
+    [...allTrack.querySelectorAll('.portfolio-card-shell')]
+      .sort((firstCard, secondCard) => {
+        const firstRank = featuredAllOrder.indexOf(firstCard.dataset.videoContainer);
+        const secondRank = featuredAllOrder.indexOf(secondCard.dataset.videoContainer);
+        if (firstRank !== -1 || secondRank !== -1) return (firstRank === -1 ? featuredAllOrder.length : firstRank) - (secondRank === -1 ? featuredAllOrder.length : secondRank);
+        return 0;
+      })
+      .forEach((card) => allTrack.append(card));
+  }
   document.querySelector('#fashion-apparel')?.remove();
   document.querySelector('#fitness')?.remove();
   const portfolioSliders = allSlider ? [allSlider] : [];
@@ -169,6 +198,7 @@
   function closeVideoPlayer() {
     if (videoModalPlayer) {
       videoModalPlayer.pause();
+      videoModalPlayer.muted = false;
       videoModalPlayer.removeAttribute('src');
       if (videoModalSource) videoModalSource.removeAttribute('src');
       videoModalPlayer.load();
@@ -185,22 +215,36 @@
     const videoPath = card.dataset.videoSrc;
     if (!videoPath) return;
     const videoUrl = new URL(videoPath, document.baseURI).href;
+    const handleVideoError = () => {
+      videoModalPlayer.removeEventListener('loadedmetadata', startPlayback);
+      videoModalPlayer.controls = true;
+      videoModalPlayer.setAttribute('aria-label', 'Video playback failed. Please try again.');
+    };
+    const startPlayback = () => {
+      videoModalPlayer.removeEventListener('error', handleVideoError);
+      videoModalPlayer.muted = false;
+      videoModalPlayer.volume = 1;
+      videoModalPlayer.play().catch(() => {
+        videoModalPlayer.controls = true;
+      });
+    };
     videoModalPlayer.pause();
     videoModalPlayer.removeAttribute('src');
     if (videoModalSource) videoModalSource.removeAttribute('src');
-    videoModalPlayer.load();
-    if (videoModalSource) videoModalSource.src = videoUrl;
+    videoModalPlayer.muted = false;
+    videoModalPlayer.volume = 1;
+    videoModalPlayer.removeEventListener('loadedmetadata', startPlayback);
+    videoModalPlayer.removeEventListener('error', handleVideoError);
+    videoModalPlayer.addEventListener('loadedmetadata', startPlayback, { once: true });
+    videoModalPlayer.addEventListener('error', handleVideoError, { once: true });
+    videoModalPlayer.src = videoUrl;
     videoModalPlayer.controls = true;
     videoLightbox.classList.remove('hidden');
     videoLightbox.classList.add('flex');
     videoLightbox.setAttribute('aria-hidden', 'false');
     document.body.classList.add('video-modal-open');
-    const startPlayback = () => {
-      videoModalPlayer.play().catch(() => {});
-      videoModalPlayer.removeEventListener('loadedmetadata', startPlayback);
-    };
-    videoModalPlayer.addEventListener('loadedmetadata', startPlayback, { once: true });
     videoModalPlayer.load();
+    startPlayback();
   }
   if (closeVideoModal) {
     closeVideoModal.addEventListener('click', closeVideoPlayer);
@@ -311,7 +355,9 @@
 
       videoCards.forEach((card) => {
         const wrapper = card.closest('.group');
-        const visible = niche === 'All' || (wrapper?.dataset.niche === niche && (!subcategory || wrapper.dataset.subcategory === subcategory));
+        const visible = niche === 'All'
+          ? wrapper?.dataset.excludeFromAll !== 'true'
+          : (wrapper?.dataset.niche === niche && (!subcategory || wrapper.dataset.subcategory === subcategory));
         if (wrapper) wrapper.classList.toggle('hidden', !visible);
       });
       if (allSlider) {
@@ -339,50 +385,6 @@
     event.stopPropagation();
     openVideoPlayer(document.querySelector('[data-video-container="hero-ad"]'));
   });
-
-  if (form && success) {
-    form.onsubmit = null;
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
-
-      const name = form.querySelector('[name="name"]').value.trim();
-      const email = form.querySelector('[name="email"]').value.trim();
-      const productDescriptionValue = form.querySelector('[name="productDescription"]')?.value.trim() || '';
-      const phone = form.querySelector('[name="phone"]')?.value.trim() || '';
-      const productUrl = form.querySelector('[name="productUrl"]')?.value.trim() || '';
-      const website = form.querySelector('[name="website"]')?.value.trim() || '';
-      const spend = form.querySelector('select')?.value || '';
-      const customSpend = form.querySelector('[name="customSpend"]')?.value.trim() || '';
-      const productDescription = [
-        productDescriptionValue,
-        phone && `Phone: ${phone}`,
-        productUrl && `Product URL: ${productUrl}`,
-        website && `Website: ${website}`
-      ].filter(Boolean).join('\n\n') || 'No product details provided yet.';
-      const lead = { name, email, productDescription, spend, customSpend };
-      if (window.location.protocol === 'file:') {
-        window.alert('Please run the website with "npm start" before submitting this form.');
-        return;
-      }
-
-      try {
-        const response = await fetch('/api/leads', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(lead)
-        });
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(result.error || 'Lead submission failed.');
-      } catch (error) {
-        window.alert(error.message || 'Your request could not be sent. Check the server SMTP configuration and try again.');
-        return;
-      }
-
-      form.classList.add('hidden');
-      success.classList.remove('hidden');
-    });
-  }
 
   const authLinks = document.querySelectorAll('a[data-path="login"]:not([data-mobile-auth]), a[data-path="sign-up"]:not([data-mobile-auth])');
   const authStyles = document.createElement('style');

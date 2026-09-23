@@ -63,6 +63,7 @@ const databaseReady = database.batch([
   'CREATE TABLE IF NOT EXISTS password_reset_sessions (id TEXT PRIMARY KEY, token_hash TEXT NOT NULL UNIQUE, user_id INTEGER NOT NULL, expires_at INTEGER NOT NULL, used_at INTEGER)',
   'CREATE TABLE IF NOT EXISTS projects (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, name TEXT NOT NULL, status TEXT NOT NULL DEFAULT \'requested\', service TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)',
   'CREATE TABLE IF NOT EXISTS leads (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT NOT NULL, product_description TEXT NOT NULL, spend TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)',
+  'CREATE TABLE IF NOT EXISTS contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT NOT NULL, subject TEXT NOT NULL, message TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)',
   'CREATE TABLE IF NOT EXISTS strategy_calls (id INTEGER PRIMARY KEY AUTOINCREMENT, ingredients TEXT NOT NULL, audience TEXT NOT NULL, platforms TEXT NOT NULL, brand_colors TEXT NOT NULL, other_references TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)'
 ], 'write');
 async function addUserColumn(sql) {
@@ -455,6 +456,16 @@ const strategyCallMigrationReady = databaseReady.then(() => Promise.all([
   addStrategyCallColumn('ALTER TABLE strategy_calls ADD COLUMN product_image_path TEXT')
 ]));
 
+async function executeFormDatabase(operation, readiness = databaseReady) {
+  try {
+    return await operation();
+  } catch (error) {
+    if (!/no such table|no such column|has no column named/i.test(error.message || '')) throw error;
+    await readiness;
+    return operation();
+  }
+}
+
 function validateImageDataUrl(dataUrl) {
   if (!dataUrl || typeof dataUrl !== 'string') return null;
   const match = /^data:(image\/(png|jpe?g|webp));base64,([A-Za-z0-9+/=]+)$/i.exec(dataUrl.trim());
@@ -486,8 +497,17 @@ if (!transporter) {
     .catch((error) => console.error('SMTP authentication failed:', error.code || error.message));
 }
 
+function queueNotificationEmail(mailOptions, context) {
+  if (!transporter) {
+    console.warn(`${context} notification skipped because SMTP is not configured.`);
+    return;
+  }
+  void transporter.sendMail(mailOptions).catch((error) => {
+    console.error(`${context} notification email failed after saving:`, error.message);
+  });
+}
+
 app.post('/api/leads', async (request, response) => {
-  await databaseReady;
   const { name, email, productDescription, spend, customSpend } = normalizeLeadPayload(request.body || {});
   const cleanName = name;
   const cleanEmail = email;
@@ -501,14 +521,17 @@ app.post('/api/leads', async (request, response) => {
   }
 
   try {
-    await database.execute({
+    const storedSpend = cleanSpend === 'Custom Price' ? `Custom Price: ${providedCustomSpend}` : cleanSpend;
+    const recentDuplicate = await executeFormDatabase(() => database.execute({
+      sql: "SELECT id FROM leads WHERE name = ? AND email = ? AND product_description = ? AND spend = ? AND created_at >= datetime('now', '-10 minutes') LIMIT 1",
+      args: [cleanName, cleanEmail, cleanDescription, storedSpend]
+    }));
+    if (recentDuplicate.rows.length) return response.json({ ok: true, message: 'Your request has already been received.' });
+    await executeFormDatabase(() => database.execute({
       sql: 'INSERT INTO leads (name, email, product_description, spend) VALUES (?, ?, ?, ?)',
-      args: [cleanName, cleanEmail, cleanDescription, cleanSpend === 'Custom Price' ? `Custom Price: ${providedCustomSpend}` : cleanSpend]
-    });
-    if (!transporter) {
-      return response.status(503).json({ error: 'Your request was saved, but email delivery is not configured on the server.' });
-    }
-    await transporter.sendMail({
+      args: [cleanName, cleanEmail, cleanDescription, storedSpend]
+    }));
+    queueNotificationEmail({
       from: smtpUser,
       to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
       replyTo: cleanEmail,
@@ -521,8 +544,8 @@ app.post('/api/leads', async (request, response) => {
         `Product description: ${cleanDescription}`,
         `Estimated monthly ad spend: ${cleanSpend === 'Custom Price' ? providedCustomSpend : cleanSpend}`
       ].join('\n')
-    });
-    return response.json({ ok: true });
+    }, 'Lead');
+    return response.json({ ok: true, message: 'Your request has been received.' });
   } catch (error) {
     console.error('Lead email failed:', error.message);
     if (error.code === 'EAUTH') {
@@ -544,10 +567,16 @@ app.post('/api/contact', async (request, response) => {
   }
 
   try {
-    if (!transporter) {
-      return response.status(503).json({ error: 'Your contact request was received, but email delivery is not configured on the server.' });
-    }
-    await transporter.sendMail({
+    const recentDuplicate = await executeFormDatabase(() => database.execute({
+      sql: "SELECT id FROM contacts WHERE name = ? AND email = ? AND subject = ? AND message = ? AND created_at >= datetime('now', '-10 minutes') LIMIT 1",
+      args: [name, email, subject, message]
+    }));
+    if (recentDuplicate.rows.length) return response.json({ ok: true, message: 'Your message has already been received.' });
+    await executeFormDatabase(() => database.execute({
+      sql: 'INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)',
+      args: [name, email, subject, message]
+    }));
+    queueNotificationEmail({
       from: smtpUser,
       to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
       replyTo: email,
@@ -562,21 +591,15 @@ app.post('/api/contact', async (request, response) => {
         'Message:',
         message
       ].join('\n')
-    });
+    }, 'Contact');
     return response.json({ ok: true, message: 'Your message was sent successfully.' });
   } catch (error) {
-    console.error('Contact email failed:', error.message);
-    if (error.code === 'EAUTH') {
-      return response.status(502).json({ error: 'Gmail rejected the SMTP app password. Generate a new Gmail app password and update .env.' });
-    }
-    return response.status(500).json({ error: 'Unable to send your message right now.' });
+    console.error('Contact request save failed:', error.message);
+    return response.status(500).json({ error: 'Unable to save your message right now.' });
   }
 });
 
 app.post('/api/strategy-calls', async (request, response) => {
-  await databaseReady;
-  await strategyCallMigrationReady;
-
   const payload = request.body || {};
   const name = String(payload.name || '').trim();
   const email = String(payload.email || '').trim().toLowerCase();
@@ -599,53 +622,51 @@ app.post('/api/strategy-calls', async (request, response) => {
 
   let savedImage = null;
   try {
-    if (productImageDataUrl) savedImage = validateImageDataUrl(productImageDataUrl, productImageName);
-  } catch (error) {
-    return response.status(400).json({ error: error.message || 'The uploaded product image is invalid.' });
-  }
+    const recentDuplicate = await executeFormDatabase(() => database.execute({
+      sql: "SELECT id FROM strategy_calls WHERE name = ? AND email = ? AND niche = ? AND targeted_platforms = ? AND product_details = ? AND created_at >= datetime('now', '-10 minutes') LIMIT 1",
+      args: [name, email, niche, targetedPlatforms, productDetails]
+    }, strategyCallMigrationReady));
+    if (recentDuplicate.rows.length) return response.json({ ok: true, message: 'Your meeting request has already been received.' });
 
-  try {
-    await database.execute({
+    if (productImageDataUrl) savedImage = validateImageDataUrl(productImageDataUrl, productImageName);
+    await executeFormDatabase(() => database.execute({
       sql: 'INSERT INTO strategy_calls (ingredients, audience, platforms, brand_colors, other_references, name, email, niche, targeted_platforms, product_details, requirements, product_image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       args: [productDetails, niche, targetedPlatforms, '', productDetails, name, email, niche, targetedPlatforms, productDetails, requirements, savedImage?.relativePath || null]
-    });
-
-    const attachments = savedImage ? [{
-      filename: savedImage.fileName,
-      path: savedImage.filePath,
-      contentType: savedImage.mimeType
-    }] : [];
-
-    if (!transporter) {
-      return response.status(503).json({ error: 'Your meeting request was saved, but email delivery is not configured on the server.' });
-    }
-
-    await transporter.sendMail({
-      from: smtpUser,
-      to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
-      replyTo: email,
-      subject: 'New INKNOVIO TECH meeting request',
-      text: [
-        'New Book a Meeting request',
-        '',
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Niche: ${niche}`,
-        `Targeted Platforms: ${targetedPlatforms}`,
-        `Product Details & Requirements: ${productDetails}`,
-        savedImage ? `Product Image: ${savedImage.relativePath}` : 'Product Image: Not provided'
-      ].join('\n'),
-      attachments
-    });
-
-    return response.json({ ok: true, message: 'Your meeting request has been received.' });
+    }, strategyCallMigrationReady));
   } catch (error) {
-    console.error('Strategy call submission failed:', error.message);
-    if (savedImage?.filePath) {
-      try { fs.unlinkSync(savedImage.filePath); } catch (unlinkError) { console.error('Failed to remove saved meeting image:', unlinkError.message); }
+    if (error.message?.startsWith('Please upload') || error.message?.startsWith('Product image')) {
+      return response.status(400).json({ error: error.message });
     }
-    return response.status(500).json({ error: 'Unable to send your request right now.' });
+    console.error('Strategy call database save failed:', error.message);
+    if (savedImage?.filePath) {
+      try { fs.unlinkSync(savedImage.filePath); } catch (unlinkError) { console.error('Failed to remove unsaved meeting image:', unlinkError.message); }
+    }
+    return response.status(500).json({ error: 'Unable to save your meeting request right now.' });
   }
+
+  const attachments = savedImage ? [{
+    filename: savedImage.fileName,
+    path: savedImage.filePath,
+    contentType: savedImage.mimeType
+  }] : [];
+  queueNotificationEmail({
+    from: smtpUser,
+    to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
+    replyTo: email,
+    subject: 'New INKNOVIO TECH meeting request',
+    text: [
+      'New Book a Meeting request',
+      '',
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Niche: ${niche}`,
+      `Targeted Platforms: ${targetedPlatforms}`,
+      `Product Details & Requirements: ${productDetails}`,
+      savedImage ? `Product Image: ${savedImage.relativePath}` : 'Product Image: Not provided'
+    ].join('\n'),
+    attachments
+  }, 'Strategy call');
+  return response.json({ ok: true, message: 'Your meeting request has been received.' });
 });
 
 if (require.main === module) {
