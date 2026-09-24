@@ -97,9 +97,9 @@ const organizationStructuredData = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'INKNOVIO',
-  url: 'https://www.inknovio.com/',
-  logo: 'https://www.inknovio.com/assets/inknovio-logo.png',
-  image: 'https://www.inknovio.com/assets/inknovio-logo.png',
+  url: 'https://inknovio.com/',
+  logo: 'https://inknovio.com/assets/inknovio-logo.png',
+  image: 'https://inknovio.com/assets/inknovio-logo.png',
   sameAs: [
     'https://www.linkedin.com/company/inknoviotech/home/'
   ]
@@ -111,18 +111,18 @@ const seoHead = [
   '<meta name="theme-color" content="#10131c">',
   '<link rel="icon" href="/assets/inknovio-favicon.svg" type="image/svg+xml">',
   '<link rel="apple-touch-icon" href="/assets/inknovio-favicon.svg">',
-  '<link rel="canonical" href="https://www.inknovio.com/">',
+  '<link rel="canonical" href="https://inknovio.com/">',
   '<meta property="og:type" content="website">',
   '<meta property="og:site_name" content="INKNOVIO TECH">',
   '<meta property="og:title" content="AI Creative Production for DTC &amp; E-Commerce | INKNOVIO TECH">',
   '<meta property="og:description" content="High-converting AI UGC ad creatives for DTC and e-commerce brands.">',
-  '<meta property="og:url" content="https://www.inknovio.com/">',
-  '<meta property="og:image" content="https://www.inknovio.com/assets/inknovio-logo.png">',
+  '<meta property="og:url" content="https://inknovio.com/">',
+  '<meta property="og:image" content="https://inknovio.com/assets/inknovio-logo.png">',
   '<meta property="og:image:alt" content="INKNOVIO TECH AI creative production">',
   '<meta name="twitter:card" content="summary_large_image">',
   '<meta name="twitter:title" content="AI Creative Production for DTC &amp; E-Commerce | INKNOVIO TECH">',
   '<meta name="twitter:description" content="High-converting AI UGC ad creatives for DTC and e-commerce brands.">',
-  '<meta name="twitter:image" content="https://www.inknovio.com/assets/inknovio-logo.png">',
+  '<meta name="twitter:image" content="https://inknovio.com/assets/inknovio-logo.png">',
   `<script type="application/ld+json">${organizationStructuredData}</script>`
 ].join('');
 

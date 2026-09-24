@@ -3,8 +3,8 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "inknovio.com" }],
-      "destination": "https://www.inknovio.com/$1",
+      "has": [{ "type": "host", "value": "www.inknovio.com" }],
+      "destination": "https://inknovio.com/$1",
       "permanent": true
     }
   ],
