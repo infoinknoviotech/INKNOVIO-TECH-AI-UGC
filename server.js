@@ -105,7 +105,7 @@ const organizationStructuredData = JSON.stringify({
   ]
 });
 const seoHead = [
-  '<title>AI Creative Production for DTC &amp; E-Commerce | INKNOVIO TECH</title>',
+  '<title>INKNOVIO TECH | AI Creative Production for DTC &amp; E-Commerce</title>',
   '<meta name="description" content="INKNOVIO creates high-converting AI UGC ad creatives for DTC and e-commerce brands, including video ads, avatars, scripts, hooks, and creative testing assets.">',
   '<meta name="robots" content="index, follow, max-image-preview:large">',
   '<meta name="theme-color" content="#10131c">',
@@ -114,13 +114,13 @@ const seoHead = [
   '<link rel="canonical" href="https://inknovio.com/">',
   '<meta property="og:type" content="website">',
   '<meta property="og:site_name" content="INKNOVIO TECH">',
-  '<meta property="og:title" content="AI Creative Production for DTC &amp; E-Commerce | INKNOVIO TECH">',
+  '<meta property="og:title" content="INKNOVIO TECH | AI Creative Production for DTC &amp; E-Commerce">',
   '<meta property="og:description" content="High-converting AI UGC ad creatives for DTC and e-commerce brands.">',
   '<meta property="og:url" content="https://inknovio.com/">',
   '<meta property="og:image" content="https://inknovio.com/assets/inknovio-logo.png">',
   '<meta property="og:image:alt" content="INKNOVIO TECH AI creative production">',
   '<meta name="twitter:card" content="summary_large_image">',
-  '<meta name="twitter:title" content="AI Creative Production for DTC &amp; E-Commerce | INKNOVIO TECH">',
+  '<meta name="twitter:title" content="INKNOVIO TECH | AI Creative Production for DTC &amp; E-Commerce">',
   '<meta name="twitter:description" content="High-converting AI UGC ad creatives for DTC and e-commerce brands.">',
   '<meta name="twitter:image" content="https://inknovio.com/assets/inknovio-logo.png">',
   `<script type="application/ld+json">${organizationStructuredData}</script>`
