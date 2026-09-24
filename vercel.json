@@ -1,5 +1,13 @@
 {
   "version": 2,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "inknovio.com" }],
+      "destination": "https://www.inknovio.com/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/api/index.js?asset=homepage" },
     { "source": "/googled744b3e4033ba80c.html", "destination": "/api/index.js?asset=google-site-verification" },
