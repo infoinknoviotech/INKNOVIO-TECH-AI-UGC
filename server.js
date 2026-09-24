@@ -98,8 +98,8 @@ const organizationStructuredData = JSON.stringify({
   '@type': 'Organization',
   name: 'INKNOVIO',
   url: 'https://inknovio.com/',
-  logo: 'https://inknovio.com/assets/inknovio-logo.png',
-  image: 'https://inknovio.com/assets/inknovio-logo.png',
+  logo: 'https://inknovio.com/assets/inknovio-logo.jpeg',
+  image: 'https://inknovio.com/assets/inknovio-logo.jpeg',
   sameAs: [
     'https://www.linkedin.com/company/inknoviotech/home/'
   ]
@@ -109,22 +109,20 @@ const seoHead = [
   '<meta name="description" content="INKNOVIO creates high-converting AI UGC ad creatives for DTC and e-commerce brands, including video ads, avatars, scripts, hooks, and creative testing assets.">',
   '<meta name="robots" content="index, follow, max-image-preview:large">',
   '<meta name="theme-color" content="#10131c">',
-  '<link rel="icon" href="/assets/inknovio-favicon-16.png?v=google" type="image/png" sizes="16x16">',
-  '<link rel="icon" href="/assets/inknovio-favicon-32.png?v=google" type="image/png" sizes="32x32">',
-  '<link rel="icon" href="/assets/inknovio-favicon-48.png?v=google" type="image/png" sizes="48x48">',
-  '<link rel="apple-touch-icon" href="/assets/inknovio-favicon-180.png?v=google" sizes="180x180">',
+  '<link rel="icon" href="/assets/inknovio-logo.jpeg?v=provided" type="image/jpeg">',
+  '<link rel="apple-touch-icon" href="/assets/inknovio-logo.jpeg?v=provided">',
   '<link rel="canonical" href="https://inknovio.com/">',
   '<meta property="og:type" content="website">',
   '<meta property="og:site_name" content="INKNOVIO TECH">',
   '<meta property="og:title" content="INKNOVIO TECH | AI Creative Production for DTC &amp; E-Commerce">',
   '<meta property="og:description" content="High-converting AI UGC ad creatives for DTC and e-commerce brands.">',
   '<meta property="og:url" content="https://inknovio.com/">',
-  '<meta property="og:image" content="https://inknovio.com/assets/inknovio-logo.png">',
+  '<meta property="og:image" content="https://inknovio.com/assets/inknovio-logo.jpeg">',
   '<meta property="og:image:alt" content="INKNOVIO TECH AI creative production">',
   '<meta name="twitter:card" content="summary_large_image">',
   '<meta name="twitter:title" content="INKNOVIO TECH | AI Creative Production for DTC &amp; E-Commerce">',
   '<meta name="twitter:description" content="High-converting AI UGC ad creatives for DTC and e-commerce brands.">',
-  '<meta name="twitter:image" content="https://inknovio.com/assets/inknovio-logo.png">',
+  '<meta name="twitter:image" content="https://inknovio.com/assets/inknovio-logo.jpeg">',
   `<script type="application/ld+json">${organizationStructuredData}</script>`
 ].join('');
 
