@@ -1099,10 +1099,6 @@ footer .connect-us-links a[href^="mailto:"] { white-space: nowrap; }
         founderName.className = 'font-label-lg text-label-lg text-on-surface';
         founderName.textContent = name;
 
-        const role = document.createElement('p');
-        role.className = 'font-body-sm text-body-sm text-on-surface-variant';
-        role.textContent = 'Founder';
-
         const linkedinLink = document.createElement('a');
         linkedinLink.className = 'inline-flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-primary';
         linkedinLink.href = linkedin;
@@ -1116,7 +1112,7 @@ footer .connect-us-links a[href^="mailto:"] { white-space: nowrap; }
         linkedinIcon.textContent = 'in';
         linkedinLink.append(linkedinIcon, document.createTextNode('LinkedIn'));
 
-        founder.append(founderName, role, linkedinLink);
+        founder.append(founderName, linkedinLink);
         founderGrid.append(founder);
       });
       foundersSection.append(founderGrid);
