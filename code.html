@@ -467,165 +467,38 @@
 <!-- 8. PACKAGES / PRICING (#packages) -->
 <section class="py-space-3xl lg:py-space-4xl bg-surface-container-lowest relative" id="packages">
 <style>
-#packages,
-#packages * {
-  font-family: "Times New Roman", Times, serif;
-}
-
-.packages-comparison {
-  display: grid;
-  grid-template-columns: minmax(170px, 1fr) repeat(3, minmax(0, 1fr));
-  gap: 0;
-  overflow: hidden;
-  border: 1px solid rgba(0, 240, 208, .18);
-  border-radius: 1rem;
-  background: rgba(11, 14, 22, .88);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, .38), 0 0 32px rgba(0, 240, 208, .06);
-}
-
-.packages-comparison > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  padding: 1.1rem 1.25rem;
-  background: rgba(24, 27, 36, .82);
-  border-right: 1px solid rgba(132, 148, 143, .14);
-  border-bottom: 1px solid rgba(132, 148, 143, .14);
-  transition: background-color .3s ease, box-shadow .3s ease;
-}
-
-.packages-comparison > div:hover {
-  background: rgba(38, 42, 51, .94);
-}
-
-.packages-comparison .packages-heading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 5.5rem;
-  padding: 1.35rem 1rem;
-  background: linear-gradient(180deg, rgba(49, 53, 62, .98), rgba(38, 42, 51, .96));
-  border-bottom: 1px solid rgba(0, 240, 208, .24);
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  line-height: 1.2;
-  white-space: nowrap;
-  text-align: center;
-}
-
-.packages-comparison > div:nth-child(4n + 1) {
-  background: rgba(11, 14, 22, .96);
-  border-right: 1px solid rgba(0, 240, 208, .32);
-}
-
-.packages-comparison .packages-heading:first-child {
-  padding: 1.35rem 1rem;
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  line-height: 1.2;
-  text-shadow: 0 0 18px rgba(0, 240, 208, .22);
-}
-
-.packages-comparison > div:nth-child(4n) {
-  border-right: 0;
-}
-
-.packages-comparison .packages-category {
-  background: rgba(11, 14, 22, .96);
-  color: #ffffff;
-  font-size: 1.12rem;
-  font-weight: 700;
-  letter-spacing: .015em;
-  line-height: 1.25;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.packages-comparison .packages-value {
-  color: #e0e2ee;
-  font-size: .97rem;
-  line-height: 1.35;
-  text-align: center;
-}
-
-.packages-comparison .packages-standard {
-  background: rgba(0, 240, 208, .08);
-  border-left: 1px solid rgba(0, 240, 208, .18);
-  border-right: 1px solid rgba(0, 240, 208, .18);
-  color: #beffee;
-  box-shadow: inset 0 0 28px rgba(0, 240, 208, .05);
-}
-
-.packages-comparison .packages-standard:hover {
-  background: rgba(0, 240, 208, .14);
-}
-
-.packages-comparison .packages-heading.packages-standard {
-  color: #ffffff;
-}
-
-.packages-category span {
-  display: inline;
-  color: #ffffff;
-  font: inherit;
-}
-
-.packages-contact {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  text-align: center;
-}
-
+*, *::before, *::after { box-sizing: border-box; }
+html, body { max-width: 100%; overflow-x: clip; }
+img, video, canvas, svg { max-width: 100%; }
+button, a { max-width: 100%; }
+#home > .absolute { width: min(700px, 100%); }
+footer .connect-us-links a, footer .connect-us-links span { min-width: 0; overflow-wrap: anywhere; }
+footer .connect-us-links a[href^="mailto:"] { white-space: nowrap; }
 @media (max-width: 767px) {
-  .packages-comparison {
-    grid-template-columns: 1fr;
-    gap: .75rem;
-    overflow: visible;
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .packages-comparison > div {
-    border-right: 0;
-    border-radius: .5rem;
-  }
-
-  .packages-comparison > div:nth-child(4n + 1) {
-    border-right: 0;
-  }
-
-  .packages-comparison .packages-category {
-    padding-bottom: .5rem;
-    background: rgba(11, 14, 22, .74);
-    color: #ffffff;
-    text-align: center;
-  }
-
-  .packages-comparison .packages-heading:first-child {
-    padding: 1rem;
-    font-size: 1.1rem;
-  }
-
-  .packages-comparison .packages-value {
-    padding-top: .75rem;
-    margin-top: -.75rem;
-    border-top: 1px solid rgba(132, 148, 143, .22);
-    text-align: center;
-  }
-
-  .packages-comparison .packages-standard {
-    border-left: 0;
-    border-right: 0;
-  }
+  header > div, main > section > div, footer > div { width: 100%; max-width: 100%; padding-left: 1rem; padding-right: 1rem; }
+  header > div { min-width: 0; }
+  main > section { min-width: 0; }
+  main h1, main h2, main h3, main p { overflow-wrap: anywhere; }
+  main .flex.flex-wrap > a { flex: 1 1 100%; width: 100%; }
+  .mobile-site-menu { max-width: 100vw; }
+  .video-lightbox-panel { max-width: calc(100vw - 2rem); }
 }
+.packages-comparison { display: grid; grid-template-columns: minmax(170px, 1fr) repeat(3, minmax(0, 1fr)); gap: 0; overflow: hidden; border: 1px solid rgba(0, 240, 208, .18); border-radius: 1rem; background: rgba(11, 14, 22, .88); box-shadow: 0 20px 56px rgba(0, 0, 0, .38), 0 0 32px rgba(0, 240, 208, .06); }
+.packages-comparison > div { display: flex; align-items: center; justify-content: center; min-width: 0; padding: 1.1rem 1.25rem; background: rgba(24, 27, 36, .82); border-right: 1px solid rgba(132, 148, 143, .14); border-bottom: 1px solid rgba(132, 148, 143, .14); transition: background-color .3s ease, box-shadow .3s ease; }
+.packages-comparison > div:hover { background: rgba(38, 42, 51, .94); }
+.packages-comparison .packages-heading { min-height: 5.5rem; padding: 1.35rem 1rem; background: linear-gradient(180deg, rgba(49, 53, 62, .98), rgba(38, 42, 51, .96)); border-bottom: 1px solid rgba(0, 240, 208, .24); color: #ffffff; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; line-height: 1.2; white-space: nowrap; text-align: center; }
+.packages-comparison > div:nth-child(4n + 1) { background: rgba(11, 14, 22, .96); border-right: 1px solid rgba(0, 240, 208, .32); }
+.packages-comparison .packages-heading:first-child { padding: 1.35rem 1rem; color: #ffffff; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; line-height: 1.2; text-shadow: 0 0 18px rgba(0, 240, 208, .22); }
+.packages-comparison > div:nth-child(4n) { border-right: 0; }
+.packages-comparison .packages-category { background: rgba(11, 14, 22, .96); color: #ffffff; font-size: 1.12rem; font-weight: 700; letter-spacing: .015em; line-height: 1.25; text-align: center; white-space: nowrap; }
+.packages-comparison .packages-value { color: #e0e2ee; font-size: .97rem; line-height: 1.35; text-align: center; overflow-wrap: anywhere; }
+.packages-comparison .packages-standard { background: rgba(0, 240, 208, .08); border-left: 1px solid rgba(0, 240, 208, .18); border-right: 1px solid rgba(0, 240, 208, .18); color: #beffee; box-shadow: inset 0 0 28px rgba(0, 240, 208, .05); }
+.packages-comparison .packages-standard:hover { background: rgba(0, 240, 208, .14); }
+.packages-comparison .packages-heading.packages-standard { color: #ffffff; }
+.packages-category span { display: inline; color: #ffffff; font: inherit; }
+.packages-contact { display: flex; align-items: center; justify-content: center; margin-top: 2rem; text-align: center; }
+@media (max-width: 1023px) { .packages-comparison { grid-template-columns: minmax(130px, .85fr) repeat(3, minmax(0, 1fr)); } .packages-comparison > div { padding: 1rem .7rem; } .packages-comparison .packages-category { white-space: normal; font-size: 1rem; } .packages-comparison .packages-heading { white-space: normal; font-size: 1rem; } }
+@media (max-width: 767px) { .packages-comparison { grid-template-columns: minmax(128px, 1.15fr) repeat(3, minmax(124px, 1fr)); width: calc(100% + 2rem); max-width: 100vw; min-width: 0; margin-left: -1rem; gap: 0; overflow-x: auto; overflow-y: hidden; border: 1px solid rgba(0, 240, 208, .18); background: rgba(11, 14, 22, .88); box-shadow: 0 20px 56px rgba(0, 0, 0, .28), 0 0 32px rgba(0, 240, 208, .06); } .packages-comparison > div { min-width: 0; border-right: 1px solid rgba(132, 148, 143, .14); border-radius: 0; padding: .85rem .65rem; overflow-wrap: anywhere; } .packages-comparison > div:nth-child(4n + 1) { border-right: 1px solid rgba(0, 240, 208, .32); } .packages-comparison .packages-heading { display: flex; min-height: 4.75rem; padding: 1rem .65rem; font-size: .95rem; line-height: 1.2; white-space: normal; text-align: center; } .packages-comparison .packages-heading:first-child { display: flex; padding: 1rem .65rem; font-size: .9rem; } .packages-comparison .packages-category { display: flex; min-height: 3.5rem; padding: .75rem .65rem; background: rgba(11, 14, 22, .96); color: #ffffff; font-size: .88rem; text-align: left; white-space: normal; } .packages-comparison .packages-value { display: flex; align-items: center; justify-content: center; min-height: 3.5rem; padding: .75rem .55rem; font-size: .84rem; line-height: 1.3; text-align: center; } .packages-comparison .packages-standard { border-left: 1px solid rgba(0, 240, 208, .18); border-right: 1px solid rgba(0, 240, 208, .18); } }
 </style>
 <div class="max-w-[1240px] mx-auto px-gutter-desktop">
 <div class="flex flex-col items-center text-center max-w-3xl mx-auto gap-space-xs mb-space-3xl"><span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">PACKAGES</span><h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">Choose Your <span class="text-primary-container">Creative Package.</span></h2><p class="font-body-lg text-body-lg text-on-surface-variant">Select the production package that fits your next creative sprint.</p></div>
@@ -1194,6 +1067,63 @@
     };
     document.addEventListener('DOMContentLoaded', bindConnectUs);
     bindConnectUs();
+
+    const bindFounders = () => {
+      const footer = document.querySelector('footer > div');
+      const footerBottom = footer?.querySelector(':scope > .pt-space-xl');
+      if (!footer || !footerBottom || footer.querySelector('[data-footer-founders]')) return;
+
+      const founders = [
+        { name: 'Muhammed Abdul Hadi', linkedin: 'https://www.linkedin.com/in/muhammed-abdul-hadi/' },
+        { name: 'Muneeb Ali', linkedin: 'https://www.linkedin.com/in/muneeb-ali-891337301/' },
+        { name: 'Habib ur Rehman Khan', linkedin: 'https://www.linkedin.com/in/habib-ur-rehman-khan-b237b432a/' }
+      ];
+      const foundersSection = document.createElement('section');
+      foundersSection.dataset.footerFounders = 'true';
+      foundersSection.className = 'mt-space-lg border-t border-outline-variant pt-space-lg';
+      foundersSection.setAttribute('aria-labelledby', 'footer-founders-title');
+
+      const heading = document.createElement('h2');
+      heading.id = 'footer-founders-title';
+      heading.className = 'mb-space-lg text-center font-headline-md text-headline-md uppercase tracking-wider text-primary-container';
+      heading.textContent = 'Founders';
+      foundersSection.append(heading);
+
+      const founderGrid = document.createElement('div');
+      founderGrid.className = 'mx-auto grid max-w-4xl grid-cols-1 gap-space-lg sm:grid-cols-3';
+      founders.forEach(({ name, linkedin }) => {
+        const founder = document.createElement('div');
+        founder.className = 'flex min-w-0 flex-col items-center gap-space-xs text-center';
+
+        const founderName = document.createElement('h3');
+        founderName.className = 'font-label-lg text-label-lg text-on-surface';
+        founderName.textContent = name;
+
+        const role = document.createElement('p');
+        role.className = 'font-body-sm text-body-sm text-on-surface-variant';
+        role.textContent = 'Founder';
+
+        const linkedinLink = document.createElement('a');
+        linkedinLink.className = 'inline-flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-primary';
+        linkedinLink.href = linkedin;
+        linkedinLink.target = '_blank';
+        linkedinLink.rel = 'noopener noreferrer';
+        linkedinLink.setAttribute('aria-label', `${name} on LinkedIn`);
+
+        const linkedinIcon = document.createElement('span');
+        linkedinIcon.className = 'inline-flex h-5 w-5 items-center justify-center rounded-sm bg-primary-container text-xs font-bold leading-none text-on-primary-container';
+        linkedinIcon.setAttribute('aria-hidden', 'true');
+        linkedinIcon.textContent = 'in';
+        linkedinLink.append(linkedinIcon, document.createTextNode('LinkedIn'));
+
+        founder.append(founderName, role, linkedinLink);
+        founderGrid.append(founder);
+      });
+      foundersSection.append(founderGrid);
+      footer.insertBefore(foundersSection, footerBottom);
+    };
+    document.addEventListener('DOMContentLoaded', bindFounders);
+    bindFounders();
 
   </script>
 </div></main><footer class="w-full bg-surface-container-lowest pt-space-4xl pb-space-2xl shadow-[0_-1px_16px_rgba(0,0,0,0.6)]"><div class="max-w-[1240px] mx-auto px-gutter-desktop"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-2xl pb-space-3xl"><div class="lg:col-span-5 flex flex-col items-start gap-space-md"><div class="flex items-center gap-space-sm"><a class="brand-logo-link focus:outline-none" href="#" aria-label="INKNOVIO TECH home"><img src="/assets/inknovio-logo.png" alt="INKNOVIO TECH" class="brand-logo brand-logo-footer"></a></div><p class="font-body-md text-body-md text-on-surface-variant max-w-md">High-converting AI UGC ad creatives engineered for modern advertising teams and fast-growing brands.</p><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xxs rounded-full bg-surface-container-low shadow-[0_2px_8px_rgba(0,0,0,0.4)]"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Enterprise Creative Engine</span></div></div><div class="lg:col-span-2 flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface tracking-wider uppercase">Navigation</span><ul class="flex flex-col gap-space-xs"><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#home">Home</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="services" href="#services">Services</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="#get-started">Contact Now</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="work" href="#work">Work</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="about" href="#about">About</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="faq" href="#faq">FAQ</a></li></ul></div><div class="lg:col-span-3 flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface tracking-wider uppercase">Creative Services</span><ul class="flex flex-col gap-space-xs"><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">AI UGC Video Ads</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Virtual Avatars</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Hook Testing</a></li><li role="none" class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Product Storytelling</a></li></ul></div><div class="lg:col-span-2 flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface tracking-wider uppercase">Legal &amp; Connect</span><ul class="flex flex-col gap-space-xs"><li role="none" class=""><a class="font-body-sm text-body-sm text-primary-container hover:underline transition-all whitespace-nowrap sm:whitespace-nowrap" href="mailto:info.inknoviotech@gmail.com">info.inknoviotech@gmail.com</a></li></ul></div></div><div class="pt-space-xl flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant"><span class="font-body-sm text-body-sm">© 2026 INKNOVIO TECH. All rights reserved.</span><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xxs rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-primary-container"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Platform Status: Operational</span></div></div></div></footer>

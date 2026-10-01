@@ -87,6 +87,9 @@ app.use(cookieSession({
 const rootStaticFiles = [
   'app.js',
   'code.html',
+  'favicon.ico',
+  'favicon.png',
+  'apple-touch-icon.png',
   'screen.png',
   'googled744b3e4033ba80c.html',
   'sitemap.xml',
@@ -109,8 +112,9 @@ const seoHead = [
   '<meta name="description" content="INKNOVIO creates high-converting AI UGC ad creatives for DTC and e-commerce brands, including video ads, avatars, scripts, hooks, and creative testing assets.">',
   '<meta name="robots" content="index, follow, max-image-preview:large">',
   '<meta name="theme-color" content="#10131c">',
-  '<link rel="icon" href="/assets/inknovio-logo.png?v=transparent" type="image/png">',
-  '<link rel="apple-touch-icon" href="/assets/inknovio-logo.png?v=transparent">',
+  '<link rel="icon" href="/favicon.png?v=480-full-logo" type="image/png" sizes="480x480">',
+  '<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48 256x256">',
+  '<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">',
   '<link rel="canonical" href="https://inknovio.com/">',
   '<meta property="og:type" content="website">',
   '<meta property="og:site_name" content="INKNOVIO TECH">',
@@ -141,6 +145,9 @@ rootStaticFiles.forEach((fileName) => {
 
 app.get('/api/index.js', (request, response, next) => {
   if (request.query.asset === 'app.js') return response.sendFile(path.join(__dirname, 'app.js'));
+  if (request.query.asset === 'favicon-ico') return response.sendFile(path.join(__dirname, 'favicon.ico'));
+  if (request.query.asset === 'favicon-png') return response.sendFile(path.join(__dirname, 'favicon.png'));
+  if (request.query.asset === 'apple-touch-icon') return response.sendFile(path.join(__dirname, 'apple-touch-icon.png'));
   if (request.query.asset === 'google-site-verification') return response.sendFile(path.join(__dirname, 'googled744b3e4033ba80c.html'));
   if (request.query.asset === 'sitemap') return response.type('application/xml').sendFile(path.join(__dirname, 'sitemap.xml'));
   if (request.query.asset === 'robots') return response.type('text/plain').sendFile(path.join(__dirname, 'robots.txt'));
