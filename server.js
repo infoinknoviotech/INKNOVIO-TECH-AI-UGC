@@ -14,9 +14,15 @@ const { createClient } = useWebClient
 const app = express();
 app.set('trust proxy', 1);
 const port = Number(process.env.PORT || 3000);
+const isServerlessRuntime = Boolean(
+  process.env.VERCEL
+  || process.env.NETLIFY
+  || process.env.AWS_LAMBDA_FUNCTION_NAME
+  || process.env.LAMBDA_TASK_ROOT
+);
 const fallbackSessionSecret = crypto.randomBytes(32).toString('hex');
 const sessionSecret = process.env.SESSION_SECRET || fallbackSessionSecret;
-const localSqlitePath = path.join(process.env.VERCEL ? os.tmpdir() : __dirname, 'data.sqlite');
+const localSqlitePath = path.join(isServerlessRuntime ? os.tmpdir() : __dirname, 'data.sqlite');
 const databaseUrl = process.env.TURSO_DATABASE_URL || `file:${localSqlitePath}`;
 const databaseToken = process.env.TURSO_AUTH_TOKEN;
 const smtpUser = process.env.SMTP_USER?.trim();
@@ -27,7 +33,7 @@ const smtpSecure = process.env.SMTP_SECURE === 'true' || smtpPort === 465;
 const smtpFrom = process.env.SMTP_FROM?.trim() || smtpUser;
 const smtpPassFormatValid = /^[a-zA-Z0-9]{16}$/.test(smtpPass || '');
 const authNotificationRecipient = (process.env.AUTH_NOTIFICATION_RECIPIENT || process.env.LEAD_RECIPIENT || smtpUser || '').trim();
-const isProduction = process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
+const isProduction = process.env.NODE_ENV === 'production' || isServerlessRuntime;
 const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID?.trim();
 const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN?.trim();
 const twilioFromNumber = process.env.TWILIO_FROM_NUMBER?.trim();
@@ -468,7 +474,7 @@ app.post('/api/auth/logout', (request, response) => {
 });
 
 
-const meetingUploadsDir = process.env.VERCEL || process.env.NETLIFY
+const meetingUploadsDir = isServerlessRuntime
   ? path.join(os.tmpdir(), 'inknovio-meeting-requests')
   : path.join(__dirname, 'uploads', 'meeting-requests');
 fs.mkdirSync(meetingUploadsDir, { recursive: true });
