@@ -465,7 +465,7 @@ app.post('/api/auth/logout', (request, response) => {
 });
 
 
-const meetingUploadsDir = process.env.VERCEL
+const meetingUploadsDir = process.env.VERCEL || process.env.NETLIFY
   ? path.join(os.tmpdir(), 'inknovio-meeting-requests')
   : path.join(__dirname, 'uploads', 'meeting-requests');
 fs.mkdirSync(meetingUploadsDir, { recursive: true });
