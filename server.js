@@ -4,9 +4,11 @@ const os = require('node:os');
 const crypto = require('node:crypto');
 const express = require('express');
 const cookieSession = require('cookie-session');
-const { createClient } = require('@libsql/client');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const { createClient } = process.env.NETLIFY
+  ? require('@libsql/client/web')
+  : require('@libsql/client');
 
 const app = express();
 app.set('trust proxy', 1);
