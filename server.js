@@ -6,7 +6,8 @@ const express = require('express');
 const cookieSession = require('cookie-session');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
-const { createClient } = process.env.NETLIFY
+const useWebClient = Boolean(process.env.TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL.startsWith('file:'));
+const { createClient } = useWebClient
   ? require('@libsql/client/web')
   : require('@libsql/client');
 
