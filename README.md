@@ -3,8 +3,8 @@
 ## Deployment
 
 - Cloudflare Pages serves the static frontend (`npm run build:pages`, output: `dist`).
-- Netlify Functions runs the existing Express API from `netlify/functions/api.js`. Keep the Netlify site private until its environment variables are configured.
-- The Cloudflare Pages `API_ORIGIN` variable must point to the Netlify function URL, for example `https://<site>.netlify.app/.netlify/functions/api`.
+- Netlify Functions runs the existing Express API from `netlify/functions/api.js`. Keep Deploy Preview visibility private; the production function endpoint must be public for Cloudflare Pages to reach it.
+- Cloudflare Pages uses the Netlify function URL `https://effulgent-sawine-bfe6b3.netlify.app/.netlify/functions/api` by default. Set `API_ORIGIN` in Pages to override it for a different backend.
 - The API continues to use the existing Turso database. Do not create a replacement database or use local SQLite in production.
 
 The Netlify Free plan currently includes 300 usage credits per month. Its functions are subject to this monthly cap and may be paused if it is exhausted; do not enable paid credit packs or auto-recharge. Cloudflare serves the static frontend separately so its visitor bandwidth does not consume Netlify bandwidth credits.

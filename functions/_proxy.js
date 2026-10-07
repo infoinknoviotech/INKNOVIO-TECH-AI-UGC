@@ -1,6 +1,5 @@
 export async function proxyToApi(request, env) {
-  const apiOrigin = env.API_ORIGIN;
-  if (!apiOrigin) return new Response('API service is not configured.', { status: 503 });
+  const apiOrigin = env.API_ORIGIN || 'https://effulgent-sawine-bfe6b3.netlify.app/.netlify/functions/api';
 
   const requestUrl = new URL(request.url);
   const targetUrl = new URL(apiOrigin);
