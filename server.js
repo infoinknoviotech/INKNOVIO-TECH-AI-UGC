@@ -536,14 +536,16 @@ if (!transporter) {
     .catch((error) => console.error('SMTP authentication failed:', error.code || error.message));
 }
 
-function queueNotificationEmail(mailOptions, context) {
+async function sendNotificationEmail(mailOptions, context) {
   if (!transporter) {
     console.warn(`${context} notification skipped because email is not configured.`);
     return;
   }
-  void transporter.sendMail(mailOptions).catch((error) => {
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
     console.error(`${context} notification email failed after saving:`, error.message);
-  });
+  }
 }
 
 app.post('/api/leads', async (request, response) => {
@@ -570,7 +572,7 @@ app.post('/api/leads', async (request, response) => {
       sql: 'INSERT INTO leads (name, email, product_description, spend) VALUES (?, ?, ?, ?)',
       args: [cleanName, cleanEmail, cleanDescription, storedSpend]
     }));
-    queueNotificationEmail({
+    await sendNotificationEmail({
       from: smtpFrom,
       to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
       replyTo: cleanEmail,
@@ -615,7 +617,7 @@ app.post('/api/contact', async (request, response) => {
       sql: 'INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)',
       args: [name, email, subject, message]
     }));
-    queueNotificationEmail({
+    await sendNotificationEmail({
       from: smtpFrom,
       to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
       replyTo: email,
@@ -688,7 +690,7 @@ app.post('/api/strategy-calls', async (request, response) => {
     path: savedImage.filePath,
     contentType: savedImage.mimeType
   }] : [];
-  queueNotificationEmail({
+  await sendNotificationEmail({
     from: smtpFrom,
     to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
     replyTo: email,
