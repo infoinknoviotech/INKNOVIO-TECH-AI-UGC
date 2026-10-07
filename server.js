@@ -15,8 +15,7 @@ const app = express();
 app.set('trust proxy', 1);
 const port = Number(process.env.PORT || 3000);
 const isServerlessRuntime = Boolean(
-  process.env.VERCEL
-  || process.env.NETLIFY
+  process.env.NETLIFY
   || process.env.AWS_LAMBDA_FUNCTION_NAME
   || process.env.LAMBDA_TASK_ROOT
 );
@@ -51,7 +50,7 @@ function sendCachedFile(response, filePath, contentType) {
 app.use(express.json({ limit: '10mb' }));
 app.use((request, response, next) => {
   const origin = request.headers.origin;
-  const allowedOriginPattern = /^(https?:\/\/localhost(?::\d+)?|https?:\/\/127\.0\.0\.1(?::\d+)?|https?:\/\/.*\.vercel\.app)$/i;
+  const allowedOriginPattern = /^(https?:\/\/localhost(?::\d+)?|https?:\/\/127\.0\.0\.1(?::\d+)?)$/i;
   if (origin && allowedOriginPattern.test(origin)) {
     response.setHeader('Access-Control-Allow-Origin', origin);
     response.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -62,9 +61,9 @@ app.use((request, response, next) => {
   next();
 });
 if (!process.env.SESSION_SECRET && !isProduction) {
-  console.warn('SESSION_SECRET is missing; using a generated local secret for development. Set SESSION_SECRET in .env or Vercel for stable sessions.');
+  console.warn('SESSION_SECRET is missing; using a generated local secret for development. Set SESSION_SECRET in .env or the deployment environment for stable sessions.');
 } else if (!process.env.SESSION_SECRET && isProduction) {
-  console.warn('SESSION_SECRET is missing in production. Set a stable SESSION_SECRET in Vercel to avoid session resets between deployments and cold starts.');
+  console.warn('SESSION_SECRET is missing in production. Set a stable SESSION_SECRET in the deployment environment to avoid session resets between deployments and cold starts.');
 }
 
 if (productionDatabaseMissing) console.error('TURSO_DATABASE_URL must be configured in production. API requests are disabled until durable storage is configured.');
@@ -128,20 +127,8 @@ rootStaticFiles.forEach((fileName) => {
   });
 });
 
-app.get('/api/index.js', (request, response, next) => {
-  if (request.query.asset === 'app.js') return sendCachedFile(response, path.join(__dirname, 'app.js'));
-  if (request.query.asset === 'favicon-ico') return sendCachedFile(response, path.join(__dirname, 'favicon.ico'));
-  if (request.query.asset === 'favicon-png') return sendCachedFile(response, path.join(__dirname, 'favicon.png'));
-  if (request.query.asset === 'apple-touch-icon') return sendCachedFile(response, path.join(__dirname, 'apple-touch-icon.png'));
-  if (request.query.asset === 'google-site-verification') return sendCachedFile(response, path.join(__dirname, 'googled744b3e4033ba80c.html'));
-  if (request.query.asset === 'sitemap') return sendCachedFile(response, path.join(__dirname, 'sitemap.xml'), 'application/xml');
-  if (request.query.asset === 'robots') return sendCachedFile(response, path.join(__dirname, 'robots.txt'), 'text/plain');
-  if (request.query.asset === 'homepage') return sendSeoHomepage(request, response, next);
-  return next();
-});
-
 app.use('/api', (request, response, next) => {
-  if (productionDatabaseMissing) return response.status(503).json({ error: 'Authentication backend is not configured for production storage. Set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN in Vercel.' });
+  if (productionDatabaseMissing) return response.status(503).json({ error: 'Authentication backend is not configured for production storage. Set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN in the deployment environment.' });
   next();
 });
 
