@@ -26,3 +26,5 @@ Configure these in Netlify's environment variable settings, never in Git:
 - `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_FROM_NUMBER` (optional; enables phone password recovery)
 
 `SMTP_PASS` must be a provider app password when using Gmail. Password recovery uses the existing `users` table and email configuration. Production uploads use ephemeral function storage; product images are attached to the meeting-request notification email, and should not be treated as durable file storage.
+
+For Resend SMTP, use `SMTP_USER=resend`, `SMTP_HOST=smtp.resend.com`, `SMTP_PORT=465`, and `SMTP_SECURE=true`; store the Resend API key in `SMTP_PASS` as a secret. `SMTP_FROM` must use an address on a verified sending domain.

@@ -264,7 +264,7 @@ async function sendAuthNotification(event, user) {
   const timestamp = new Date().toISOString();
   const isSignup = event === 'SIGNUP';
   await transporter.sendMail({
-    from: smtpUser,
+    from: smtpFrom,
     to: authNotificationRecipient,
     subject: `[INKNOVIO TECH] ${event} notification`,
     text: [
@@ -562,7 +562,7 @@ app.post('/api/leads', async (request, response) => {
       args: [cleanName, cleanEmail, cleanDescription, storedSpend]
     }));
     queueNotificationEmail({
-      from: smtpUser,
+      from: smtpFrom,
       to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
       replyTo: cleanEmail,
       subject: 'New INKNOVIO TECH project inquiry',
@@ -579,7 +579,7 @@ app.post('/api/leads', async (request, response) => {
   } catch (error) {
     console.error('Lead email failed:', error.message);
     if (error.code === 'EAUTH') {
-      return response.status(502).json({ error: 'Gmail rejected the SMTP app password. Generate a new Gmail app password and update .env.' });
+      return response.status(502).json({ error: 'The SMTP provider rejected the configured credentials.' });
     }
     return response.status(500).json({ error: 'Unable to send your request right now.' });
   }
@@ -607,7 +607,7 @@ app.post('/api/contact', async (request, response) => {
       args: [name, email, subject, message]
     }));
     queueNotificationEmail({
-      from: smtpUser,
+      from: smtpFrom,
       to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
       replyTo: email,
       subject: `New INKNOVIO TECH contact inquiry: ${subject}`,
@@ -680,7 +680,7 @@ app.post('/api/strategy-calls', async (request, response) => {
     contentType: savedImage.mimeType
   }] : [];
   queueNotificationEmail({
-    from: smtpUser,
+    from: smtpFrom,
     to: process.env.LEAD_RECIPIENT?.trim() || smtpUser,
     replyTo: email,
     subject: 'New INKNOVIO TECH meeting request',
