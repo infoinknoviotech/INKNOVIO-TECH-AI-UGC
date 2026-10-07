@@ -31,6 +31,13 @@ const twilioFromNumber = process.env.TWILIO_FROM_NUMBER?.trim();
 const productionDatabaseMissing = isProduction && !process.env.TURSO_DATABASE_URL;
 const OTP_EXPIRATION_SECONDS = 3 * 60;
 const OTP_RESEND_COOLDOWN_SECONDS = 60;
+const staticResponseCacheControl = 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800';
+
+function sendCachedFile(response, filePath, contentType) {
+  response.setHeader('Cache-Control', staticResponseCacheControl);
+  if (contentType) response.type(contentType);
+  return response.sendFile(filePath);
+}
 
 app.use(express.json({ limit: '10mb' }));
 app.use((request, response, next) => {
@@ -96,41 +103,10 @@ const rootStaticFiles = [
   'robots.txt'
 ];
 
-const organizationStructuredData = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'INKNOVIO',
-  url: 'https://inknovio.com/',
-  logo: 'https://inknovio.com/assets/inknovio-logo.jpeg',
-  image: 'https://inknovio.com/assets/inknovio-logo.jpeg',
-  sameAs: [
-    'https://www.linkedin.com/company/inknoviotech/home/'
-  ]
-});
-const seoHead = [
-  '<title>INKNOVIO TECH | AI Creative Production for DTC &amp; E-Commerce</title>',
-  '<meta name="description" content="INKNOVIO creates high-converting AI UGC ad creatives for DTC and e-commerce brands, including video ads, avatars, scripts, hooks, and creative testing assets.">',
-  '<meta name="robots" content="index, follow, max-image-preview:large">',
-  '<meta name="theme-color" content="#10131c">',
-  '<link rel="icon" href="/favicon.png?v=inknovio-logo-20261001" type="image/png" sizes="480x480">',
-  '<link rel="icon" href="/favicon.ico?v=inknovio-logo-20261001" type="image/x-icon" sizes="16x16 32x32 48x48 256x256">',
-  '<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=inknovio-logo-20261001" sizes="180x180">',
-  '<link rel="canonical" href="https://inknovio.com/">',
-  '<meta property="og:type" content="website">',
-  '<meta property="og:site_name" content="INKNOVIO TECH">',
-  '<meta property="og:title" content="INKNOVIO TECH | AI Creative Production for DTC &amp; E-Commerce">',
-  '<meta property="og:description" content="High-converting AI UGC ad creatives for DTC and e-commerce brands.">',
-  '<meta property="og:url" content="https://inknovio.com/">',
-  '<meta property="og:image" content="https://inknovio.com/assets/inknovio-logo.jpeg">',
-  '<meta property="og:image:alt" content="INKNOVIO TECH AI creative production">',
-  '<meta name="twitter:card" content="summary_large_image">',
-  '<meta name="twitter:title" content="INKNOVIO TECH | AI Creative Production for DTC &amp; E-Commerce">',
-  '<meta name="twitter:description" content="High-converting AI UGC ad creatives for DTC and e-commerce brands.">',
-  '<meta name="twitter:image" content="https://inknovio.com/assets/inknovio-logo.jpeg">',
-  `<script type="application/ld+json">${organizationStructuredData}</script>`
-].join('');
+const seoHead = require('./seo');
 
 function sendSeoHomepage(request, response, next) {
+  response.setHeader('Cache-Control', staticResponseCacheControl);
   fs.readFile(path.join(__dirname, 'code.html'), 'utf8', (error, html) => {
     if (error) return next(error);
     response.type('html').send(html.replace('<head>', `<head>${seoHead}`));
@@ -139,18 +115,18 @@ function sendSeoHomepage(request, response, next) {
 
 rootStaticFiles.forEach((fileName) => {
   app.get(`/${fileName}`, (request, response) => {
-    response.sendFile(path.join(__dirname, fileName));
+    sendCachedFile(response, path.join(__dirname, fileName));
   });
 });
 
 app.get('/api/index.js', (request, response, next) => {
-  if (request.query.asset === 'app.js') return response.sendFile(path.join(__dirname, 'app.js'));
-  if (request.query.asset === 'favicon-ico') return response.sendFile(path.join(__dirname, 'favicon.ico'));
-  if (request.query.asset === 'favicon-png') return response.sendFile(path.join(__dirname, 'favicon.png'));
-  if (request.query.asset === 'apple-touch-icon') return response.sendFile(path.join(__dirname, 'apple-touch-icon.png'));
-  if (request.query.asset === 'google-site-verification') return response.sendFile(path.join(__dirname, 'googled744b3e4033ba80c.html'));
-  if (request.query.asset === 'sitemap') return response.type('application/xml').sendFile(path.join(__dirname, 'sitemap.xml'));
-  if (request.query.asset === 'robots') return response.type('text/plain').sendFile(path.join(__dirname, 'robots.txt'));
+  if (request.query.asset === 'app.js') return sendCachedFile(response, path.join(__dirname, 'app.js'));
+  if (request.query.asset === 'favicon-ico') return sendCachedFile(response, path.join(__dirname, 'favicon.ico'));
+  if (request.query.asset === 'favicon-png') return sendCachedFile(response, path.join(__dirname, 'favicon.png'));
+  if (request.query.asset === 'apple-touch-icon') return sendCachedFile(response, path.join(__dirname, 'apple-touch-icon.png'));
+  if (request.query.asset === 'google-site-verification') return sendCachedFile(response, path.join(__dirname, 'googled744b3e4033ba80c.html'));
+  if (request.query.asset === 'sitemap') return sendCachedFile(response, path.join(__dirname, 'sitemap.xml'), 'application/xml');
+  if (request.query.asset === 'robots') return sendCachedFile(response, path.join(__dirname, 'robots.txt'), 'text/plain');
   if (request.query.asset === 'homepage') return sendSeoHomepage(request, response, next);
   return next();
 });
@@ -164,6 +140,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(__dirname));
 app.get('/', sendSeoHomepage);
+app.get('/healthz', (request, response) => response.type('text/plain').send('ok'));
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,72}$/;
@@ -281,7 +258,7 @@ function genericResetResponse(response, challengeId, expiresAt) {
 
 async function sendAuthNotification(event, user) {
   if (!transporter || !authNotificationRecipient) {
-    console.warn(`Authentication ${event} notification skipped: SMTP recipient is not configured.`);
+    console.warn(`Authentication ${event} notification skipped: email recipient is not configured.`);
     return;
   }
   const timestamp = new Date().toISOString();
@@ -552,7 +529,7 @@ if (!transporter) {
 
 function queueNotificationEmail(mailOptions, context) {
   if (!transporter) {
-    console.warn(`${context} notification skipped because SMTP is not configured.`);
+    console.warn(`${context} notification skipped because email is not configured.`);
     return;
   }
   void transporter.sendMail(mailOptions).catch((error) => {

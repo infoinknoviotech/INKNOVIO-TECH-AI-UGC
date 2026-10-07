@@ -5,6 +5,7 @@
   "description": "INKNOVIO TECH AI UGC creative production website",
   "main": "server.js",
   "scripts": {
+    "build:pages": "node scripts/build-pages.js",
     "start": "node server.js",
     "verify-smtp": "node verify-smtp.js"
   },
