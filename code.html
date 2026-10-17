@@ -880,10 +880,19 @@ footer .connect-us-links a[href^="mailto:"] { white-space: nowrap; }
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(form)))
       });
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        if (!response.ok) {
+          throw new Error(`The server returned an unexpected response (HTTP ${response.status}). Please try again.`);
+        }
+        throw new Error('The server returned an invalid response. Please try again.');
+      }
       if (!response.ok) {
-        const result = await response.json();
         throw new Error(result.error || 'Please check your information and try again.');
       }
+      if (result?.ok !== true) throw new Error('The server could not confirm your request. Please try again.');
       successForm.classList.add('hidden');
       successElement.classList.remove('hidden');
     };
