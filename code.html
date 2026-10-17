@@ -875,11 +875,17 @@ footer .connect-us-links a[href^="mailto:"] { white-space: nowrap; }
 
     const submitJsonForm = async (form, endpoint, errorElement, successElement, successForm) => {
       errorElement.classList.add('hidden');
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(new FormData(form)))
-      });
+      const body = JSON.stringify(Object.fromEntries(new FormData(form)));
+      let response;
+      for (let attempt = 0; attempt < 2; attempt += 1) {
+        response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body
+        });
+        if (![502, 503, 504].includes(response.status) || attempt === 1) break;
+        await new Promise((resolve) => setTimeout(resolve, 300));
+      }
       let result;
       try {
         result = await response.json();
